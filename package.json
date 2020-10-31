@@ -10,6 +10,11 @@
   "author": "buba1301 <bmuza57@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@types/classnames": "^2.2.11",
+    "@types/node": "^14.14.6",
+    "@types/node-sass": "^4.11.1",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
     "classnames": "^2.2.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
@@ -18,6 +23,7 @@
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "css-loader": "^5.0.0",
+    "css-modules-typescript-loader": "^4.0.1",
     "eslint": "^7.12.1",
     "eslint-plugin-react": "^7.21.5",
     "html-webpack-plugin": "^4.5.0",
