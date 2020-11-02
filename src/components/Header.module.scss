@@ -15,7 +15,6 @@
   top: 14px;
   border-radius: 0px;
 
-
   z-index: 1;
 }
 
@@ -29,76 +28,59 @@
 }
 
 .groupe {
+  position: absolute;
   height: 63px;
   width: 157px;
+  left: 0px;
+  top: 0px;
   border-radius: 0px;
-
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
 }
 
 .navbar {
+  position: absolute;
   height: 45px;
   width: 657px;
+  left: 43.37%;
+  top: 24.73%;
   border-radius: 0px;
 
-  position: absolute;
-  left: 43.37%;
-  right: 10.97%;
-  top: 24.73%;
-  bottom: 26.88%;
 }
 
 .menuItemActive {
-  height: 45px;
-  width: 80px;
-
-  border-radius: 0px;
-
   position: absolute;
-  left: 0%;
-  right: 87.8%;
-  top: 0%;
-  bottom: 0%;
+  height: 45px;
+  width: 80.20201110839844px;
+  left: 0px;
+  top: 0px;
+  border-radius: 0px;
 }
 
 .menuItem1 {
+  position: absolute;
   height: 37px;
   width: 86px;
+  left: 146px;
+  top: 0px;
   border-radius: 0px;
 
-  position: absolute;
-  left: 22.27%;
-  right: 64.54%;
-  top: 0%;
-  bottom: 17.78%;
 }
 
 .menuItem2 {
+  position: absolute;
   height: 37px;
   width: 126px;
+  left: 299px;
+  top: 0px;
   border-radius: 0px;
-
-  position: absolute;
-  left: 45.53%;
-  right: 35.18%;
-  top: 0%;
-  bottom: 17.78%;
 }
 
 .menuItem3 {
+  position: absolute;
   height: 37px;
   width: 165px;
+  left: 492px;
+  top: 0px;
   border-radius: 0px;
-
-  position: absolute;
-  left: 74.89%;
-  right: 0%;
-  top: 0%;
-  bottom: 17.78%;
 }
 
 .pharagraph {
@@ -106,16 +88,14 @@
 }
 
 .home {
+  position: absolute;
   height: 29px;
   width: 67px;
+  left: 7.4609375px;
+  top: 0px;
   border-radius: nullpx;
-  text-decoration: none;
 
-  position: absolute;
-  left: 9.3%;
-  right: 7.16%;
-  top: 0%;
-  bottom: 35.56%;
+  text-decoration: none;
 
   font-family: Karla;
   font-style: normal;
@@ -127,28 +107,24 @@
 }
 
 .line1 {
+  position: absolute;
   height: 0px;
-  width: 62px;
+  width: 62.48295974731473px;
+  left: 7.4609375px;
+  top: 45px;
   border-radius: 0px;
 
-  position: absolute;
-  left: 9.3%;
-  right: 12.79%;
-  top: 100%;
-  bottom: 0%;
   border: 3px solid #212121;
 }
 
 .pokedex {
+  position: absolute;
   height: 29px;
   width: 95px;
+  left: 0px;
+  top: 0px;
   border-radius: 0px;
 
-  position: absolute;
-  left: 0%;
-  right: -9.54%;
-  top: 0%;
-  bottom: 21.62%;
   text-decoration: none;
 
   font-family: Karla;
@@ -161,15 +137,13 @@
 }
 
 .legendaries {
+  position: absolute;
   height: 29px;
   width: 139px;
+  left: 0px;
+  top: 0px;
   border-radius: 0px;
 
-  position: absolute;
-  left: 0%;
-  right: -9.59%;
-  top: 0%;
-  bottom: 21.62%;
   text-decoration: none;
 
   font-family: Karla;
@@ -182,49 +156,42 @@
 }
 
 .documentation {
+  position: absolute;
   height: 29px;
   width: 179px;
-  border-radius: 0px;
-
-  position: absolute;
-  left: 0%;
-  right: -8.44%;
-  top: 0%;
-  bottom: 21.62%;
+  left: 0px;
+  top: 0px;
+  border-radius: nullpx;
+  text-decoration: none;
 
   font-family: Karla;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;
   line-height: 29px;
-  text-decoration: none;
 
   color: #000000;
 }
 
 .headerContainer {
   position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
+  height: 93px;
+  width: 1440px;
+  left: 0px;
+  top: 0px;
+  border-radius: 0px;
 }
 
 .rectangle2 {
   position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
+  height: 93px;
+  width: 1440px;
+  left: 0px;
+  top: 0px;
+  border-radius: 0px;
 }
 
 .third {
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-
   background: #f5db13;
   box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
 }
