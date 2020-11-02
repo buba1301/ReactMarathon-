@@ -12,16 +12,33 @@
   height: 63px;
   left: 157px;
   top: 14px;
+  border-radius: 0px;
 
   z-index: 1;
 }
 
 .logo {
+  height: 63px;
+  width: 157px;
+  border-radius: 0px;
+
   position: absolute;
   left: 10.9%;
   right: 78.18%;
   top: 15.05%;
   bottom: 17.2%;
+}
+
+.groupe {
+  height: 63px;
+  width: 157px;
+  border-radius: 0px;
+
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
 }
 
 .navbar {

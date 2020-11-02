@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <header className={cn(s.header)}>
       <div className={cn(s.groupe95)}>
-        <img src="/public/logo.png" className={cn(s.logo)} />
+        <div className={cn(s.logo)}>
+          <img src="/public/logo.png" alt="Pockemon" className={cn(s.groupe)} />
+        </div>
         <nav className={cn(s.navbar)}>
           <div className={cn(s.menuItemActive)}>
             <a href="/" className={cn(s.home)}>
