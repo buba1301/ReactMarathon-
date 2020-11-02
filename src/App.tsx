@@ -1,10 +1,8 @@
 import React from 'react';
 import cn from 'classnames';
+import s from './App.module.scss';
 
-import './custom.css';
-import s from './App.modules.scss';
-
-const App: React.FC = () => {
+const App = () => {
 	return (
 		<div className={cn(s.header, ' color')}>
 			This is React App
