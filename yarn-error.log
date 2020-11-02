@@ -76,6 +76,17 @@ npm manifest:
       "webpack": "4.44.2",
       "webpack-cli": "^4.1.0",
       "webpack-dev-server": "^3.11.0"
+    },
+    "husky": {
+      "hooks": {
+        "pre-commit": "lint-staged"
+      }
+    },
+    "lint-staged": {
+      "src/**/*.{js,jsx,ts,tsx,json,css}": [
+        "pretty-quick --staged",
+        "eslint ./src"
+      ]
     }
   }
 
