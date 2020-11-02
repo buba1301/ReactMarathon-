@@ -14,6 +14,7 @@ const Header = () => {
             <a href="/" className={cn(s.home)}>
               Home
             </a>
+            <div className={s.line1} />
           </div>
           <div className={s.menuItem1}>
             <a href="/poke" className={cn(s.pokedex)}>

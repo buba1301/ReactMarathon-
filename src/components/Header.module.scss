@@ -42,6 +42,10 @@
 }
 
 .navbar {
+  height: 45px;
+  width: 657px;
+  border-radius: 0px;
+
   position: absolute;
   left: 43.37%;
   right: 10.97%;
@@ -50,6 +54,11 @@
 }
 
 .menuItemActive {
+  height: 45px;
+  width: 80px;
+
+  border-radius: 0px;
+
   position: absolute;
   left: 0%;
   right: 87.8%;
@@ -58,6 +67,10 @@
 }
 
 .menuItem1 {
+  height: 37px;
+  width: 86px;
+  border-radius: 0px;
+
   position: absolute;
   left: 22.27%;
   right: 64.54%;
@@ -66,6 +79,10 @@
 }
 
 .menuItem2 {
+  height: 37px;
+  width: 126px;
+  border-radius: 0px;
+
   position: absolute;
   left: 45.53%;
   right: 35.18%;
@@ -74,6 +91,10 @@
 }
 
 .menuItem3 {
+  height: 37px;
+  width: 165px;
+  border-radius: 0px;
+
   position: absolute;
   left: 74.89%;
   right: 0%;
@@ -86,6 +107,11 @@
 }
 
 .home {
+  height: 29px;
+  width: 67px;
+  border-radius: nullpx;
+  text-decoration: none;
+
   position: absolute;
   left: 9.3%;
   right: 7.16%;
@@ -97,22 +123,34 @@
   font-weight: normal;
   font-size: 25px;
   line-height: 29px;
+
+  color: #212121;
 }
 
 .line1 {
+  height: 0px;
+  width: 62px;
+  border-radius: 0px;
+
   position: absolute;
   left: 9.3%;
   right: 12.79%;
   top: 100%;
   bottom: 0%;
+  border: 3px solid #212121;
 }
 
 .pokedex {
+  height: 29px;
+  width: 95px;
+  border-radius: 0px;
+
   position: absolute;
   left: 0%;
   right: -9.54%;
   top: 0%;
   bottom: 21.62%;
+  text-decoration: none;
 
   font-family: Karla;
   font-style: normal;
@@ -124,11 +162,16 @@
 }
 
 .legendaries {
+  height: 29px;
+  width: 139px;
+  border-radius: 0px;
+
   position: absolute;
   left: 0%;
   right: -9.59%;
   top: 0%;
   bottom: 21.62%;
+  text-decoration: none;
 
   font-family: Karla;
   font-style: normal;
@@ -140,6 +183,10 @@
 }
 
 .documentation {
+  height: 29px;
+  width: 179px;
+  border-radius: 0px;
+
   position: absolute;
   left: 0%;
   right: -8.44%;
@@ -151,6 +198,7 @@
   font-weight: normal;
   font-size: 25px;
   line-height: 29px;
+  text-decoration: none;
 
   color: #000000;
 }
