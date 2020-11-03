@@ -1,47 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
-@mixin footer($width, $left, $top) {
-  position: absolute;
-  height: 22px;
-  width: $width;
-  left: $left;
-  top: $top;
-  border-radius: 0px;
-}
-
-.footerText {
-  $width: 1125px;
-  $left: 128px;
-  $top: 969px;
-  @include footer($width, $left, $top);
-}
-
-.makeWithLove {
-  $width: 112px;
-  $left: 0px;
-  $top: 1px;
-  @include footer($width, $left, $top);
-}
-
-.ourTeam {
-  $width: 91px;
-  $left: 1034px;
-  $top: 1px;
-  @include footer($width, $left, $top);
-}
-
-.h3 {
+@mixin font {
   font-family: Karla, Arial, sans-serif;
   font-style: normal;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 18px;
   line-height: 21px;
+  color: #000000;
 }
 
-.pharagraph {
-  color: #212121;
-}
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 87px;
+  margin: 33px;
+  list-style: none;
 
-.iconHeart:before {
-  content: '\e9da';
+  .w50 {
+    width: 50%;
+  }
+
+  .makeLove {
+    padding-left: 30px;
+    @include font;
+  }
+
+  .ourTeam {
+    text-decoration: none;
+    @include font;
+    padding-left: 463px;
+  }
 }

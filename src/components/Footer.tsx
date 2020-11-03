@@ -5,14 +5,18 @@ import s from './Footer.module.scss';
 const Footer = () => {
   return (
     <footer>
-      <div className={cn(s.footerText)}>
-        <div className={cn(s.makeWithLove)}>
-          <p className={cn(s.h3, s.pharagraph)}>Make with &#xe900;</p>
-        </div>
-        <div className={s.ourTeam}>
-          <p className={cn(s.h3, s.pharagraph)}>Our team</p>
-        </div>
-      </div>
+      <ul className={cn(s.footer)}>
+        <li className={cn(s.w50, s.makeLove)}>
+          <span role="img" aria-label="Heart">
+            Make with ❤️
+          </span>
+        </li>
+        <li className={cn(s.w50)}>
+          <a href="##" className={cn(s.ourTeam)}>
+            Our team
+          </a>
+        </li>
+      </ul>
     </footer>
   );
 };
