@@ -7,7 +7,7 @@ const Footer = () => {
     <footer>
       <div className={cn(s.footerText)}>
         <div className={cn(s.makeWithLove)}>
-          <p className={cn(s.h3, s.pharagraph)}>Make with Love</p>
+          <p className={cn(s.h3, s.pharagraph)}>Make with &#xe900;</p>
         </div>
         <div className={s.ourTeam}>
           <p className={cn(s.h3, s.pharagraph)}>Our team</p>

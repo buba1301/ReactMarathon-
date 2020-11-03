@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
 $back-color: #f5db13;
 $shadow-color: rgba(1, 28, 64, 0.2);
 $active-link-color: #212121;
 $link-color: #000000;
 
 @mixin font {
-  font-family: Karla;
+  font-family: Karla, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 25px;

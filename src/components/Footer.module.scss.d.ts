@@ -3,6 +3,7 @@
 interface CssExports {
   'footerText': string;
   'h3': string;
+  'iconHeart': string;
   'makeWithLove': string;
   'ourTeam': string;
   'pharagraph': string;

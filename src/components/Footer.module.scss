@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
 @mixin footer($width, $left, $top) {
   position: absolute;
   height: 22px;
@@ -29,7 +31,7 @@
 }
 
 .h3 {
-  font-family: Karla;
+  font-family: Karla, Arial, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -38,4 +40,8 @@
 
 .pharagraph {
   color: #212121;
+}
+
+.iconHeart:before {
+  content: '\e9da';
 }
