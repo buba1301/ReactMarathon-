@@ -9,6 +9,7 @@ const App = () => {
   return (
     <div className={cn(s.homeDesktop)}>
       <Header />
+      <main className={s.padding}>Content</main>
       <Footer />
     </div>
   );

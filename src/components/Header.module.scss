@@ -12,9 +12,9 @@ $link-color: #000000;
 }
 
 @mixin header($left: 0px) {
-  position: absolute;
+  position: fixed;
   height: 93px;
-  width: 1440px;
+  width: 100%;
   left: $left;
   top: 0px;
   border-radius: 0px;
@@ -83,6 +83,10 @@ $link-color: #000000;
       $left: 43.37%;
       $top: 24.73%;
       @include navbar($width, $left, $top);
+
+      .menu {
+        list-style: none;
+      }
 
       .menuItemActive {
         $width: 80px;
