@@ -1,25 +1,31 @@
-.footerText {
+@mixin footer($width, $left, $top) {
   position: absolute;
-  left: 8.88%;
-  right: 13.05%;
-  top: 94.63%;
-  bottom: 3.22%;
+  height: 22px;
+  width: $width;
+  left: $left;
+  top: $top;
+  border-radius: 0px;
+}
+
+.footerText {
+  $width: 1125px;
+  $left: 128px;
+  $top: 969px;
+  @include footer($width, $left, $top);
 }
 
 .makeWithLove {
-  position: absolute;
-  left: 0%;
-  right: 90.04%;
-  top: 4.55%;
-  bottom: 0%;
+  $width: 112px;
+  $left: 0px;
+  $top: 1px;
+  @include footer($width, $left, $top);
 }
 
 .ourTeam {
-  position: absolute;
-  width: 91px;
-  right: -0.16px;
-  top: 4.55%;
-  bottom: 0%;
+  $width: 91px;
+  $left: 1034.16015625px;
+  $top: 1px;
+  @include footer($width, $left, $top);
 }
 
 .h3 {
