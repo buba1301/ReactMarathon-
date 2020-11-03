@@ -15,7 +15,6 @@ interface CssExports {
   'menuItem3': string;
   'menuItemActive': string;
   'navbar': string;
-  'pharagraph': string;
   'pokedex': string;
   'rectangle2': string;
   'third': string;

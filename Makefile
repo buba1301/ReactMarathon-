@@ -9,3 +9,6 @@ start:
 
 lint:
 	npx eslint ./src
+
+pretty:
+	yarn pretty-quick

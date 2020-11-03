@@ -27,7 +27,7 @@ const Header = () => {
             </a>
           </div>
           <div className={s.menuItem3}>
-            <a href="/doc" className={cn(s.documentation)}>
+            <a href="/404" className={cn(s.documentation)}>
               Documentation
             </a>
           </div>

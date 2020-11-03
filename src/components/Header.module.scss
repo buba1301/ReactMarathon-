@@ -1,197 +1,156 @@
+$back-color: #f5db13;
+$shadow-color: rgba(1, 28, 64, 0.2);
+$active-link-color: #212121;
+$link-color: #000000;
+
+@mixin font {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 29px;
+}
+
+@mixin header($left: 0px) {
+  position: absolute;
+  height: 93px;
+  width: 1440px;
+  left: $left;
+  top: 0px;
+  border-radius: 0px;
+}
+
+@mixin groupe($width: 0px, $left: 0px, $top: 0px) {
+  position: absolute;
+  height: 63px;
+  width: $width;
+  left: $left;
+  top: $top;
+  border-radius: 0px;
+}
+
+@mixin navbar($width: 0px, $left: 0px, $top: 0px) {
+  position: absolute;
+  height: 45px;
+  border-radius: 0px;
+  width: $width;
+  left: $left;
+  top: $top;
+}
+
+@mixin menu-item-text($width: 0px, $left: 0px) {
+  position: absolute;
+  height: 29px;
+  width: $width;
+  border-radius: 0px;
+
+  text-decoration: none;
+  left: $left;
+  top: 0px;
+
+  color: $link-color;
+  @include font;
+}
+
 .header {
-  position: absolute;
-  height: 93px;
-  width: 1440px;
-  left: 1px;
-  top: 0px;
-  border-radius: 0px;
-}
+  $left: 1px;
+  @include header($left);
 
-.groupe95 {
-  position: absolute;
-  height: 63px;
-  width: 1140px;
-  left: 157px;
-  top: 14px;
-  border-radius: 0px;
+  .groupe95 {
+    $width: 1140px;
+    $left: 157px;
+    $top: 14px;
+    @include groupe($width, $left, $top);
 
-  z-index: 1;
-}
+    z-index: 1;
 
-.logo {
-  position: absolute;
-  height: 63px;
-  width: 157.1688690185547px;
-  left: 0px;
-  top: 0px;
-  border-radius: 0px;
-}
+    .logo {
+      $width: 157px;
+      @include groupe($width);
+    }
 
-.groupe {
-  position: absolute;
-  height: 63px;
-  width: 157px;
-  left: 0px;
-  top: 0px;
-  border-radius: 0px;
-}
+    .groupe {
+      $width: 157px;
+      @include groupe($width);
+    }
 
-.navbar {
-  position: absolute;
-  height: 45px;
-  width: 657px;
-  left: 43.37%;
-  top: 24.73%;
-  border-radius: 0px;
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
 
-}
+      $width: 1140px;
+      $left: 43.37%;
+      $top: 24.73%;
+      @include navbar($width, $left, $top);
 
-.menuItemActive {
-  position: absolute;
-  height: 45px;
-  width: 80.20201110839844px;
-  left: 0px;
-  top: 0px;
-  border-radius: 0px;
-}
+      .menuItemActive {
+        $width: 80px;
+        @include navbar($width);
 
-.menuItem1 {
-  position: absolute;
-  height: 37px;
-  width: 86px;
-  left: 146px;
-  top: 0px;
-  border-radius: 0px;
+        .home {
+          $width: 67px;
+          $left: 10px;
+          @include menu-item-text($width, $left);
+        }
 
-}
+        .line1 {
+          position: absolute;
+          height: 0px;
+          width: 62px;
+          left: 7px;
+          top: 45px;
+          border-radius: 0px;
 
-.menuItem2 {
-  position: absolute;
-  height: 37px;
-  width: 126px;
-  left: 299px;
-  top: 0px;
-  border-radius: 0px;
-}
+          border: 3px solid $active-link-color;
+        }
+      }
 
-.menuItem3 {
-  position: absolute;
-  height: 37px;
-  width: 165px;
-  left: 492px;
-  top: 0px;
-  border-radius: 0px;
-}
+      .menuItem1 {
+        $width: 86px;
+        $left: 146px;
+        @include navbar($width, $left);
 
-.pharagraph {
-  color: #212121;
-}
+        .pokedex {
+          $width: 95px;
+          @include menu-item-text($width);
+        }
+      }
 
-.home {
-  position: absolute;
-  height: 29px;
-  width: 67px;
-  left: 7.4609375px;
-  top: 0px;
-  border-radius: nullpx;
+      .menuItem2 {
+        $width: 126px;
+        $left: 300px;
+        @include navbar($width, $left);
 
-  text-decoration: none;
+        .legendaries {
+          $width: 139px;
+          @include menu-item-text($width);
+        }
+      }
 
-  font-family: Karla;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 29px;
+      .menuItem3 {
+        $width: 165px;
+        $left: 493px;
+        @include navbar($width, $left);
 
-  color: #212121;
-}
+        .documentation {
+          $width: 179px;
+          @include menu-item-text($width);
+        }
+      }
+    }
+  }
 
-.line1 {
-  position: absolute;
-  height: 0px;
-  width: 62.48295974731473px;
-  left: 7.4609375px;
-  top: 45px;
-  border-radius: 0px;
+  .headerContainer {
+    @include header();
 
-  border: 3px solid #212121;
-}
+    .rectangle2 {
+      @include header();
+    }
 
-.pokedex {
-  position: absolute;
-  height: 29px;
-  width: 95px;
-  left: 0px;
-  top: 0px;
-  border-radius: 0px;
-
-  text-decoration: none;
-
-  font-family: Karla;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 29px;
-
-  color: #000000;
-}
-
-.legendaries {
-  position: absolute;
-  height: 29px;
-  width: 139px;
-  left: 0px;
-  top: 0px;
-  border-radius: 0px;
-
-  text-decoration: none;
-
-  font-family: Karla;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 29px;
-
-  color: #000000;
-}
-
-.documentation {
-  position: absolute;
-  height: 29px;
-  width: 179px;
-  left: 0px;
-  top: 0px;
-  border-radius: nullpx;
-  text-decoration: none;
-
-  font-family: Karla;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 29px;
-
-  color: #000000;
-}
-
-.headerContainer {
-  position: absolute;
-  height: 93px;
-  width: 1440px;
-  left: 0px;
-  top: 0px;
-  border-radius: 0px;
-}
-
-.rectangle2 {
-  position: absolute;
-  height: 93px;
-  width: 1440px;
-  left: 0px;
-  top: 0px;
-  border-radius: 0px;
-}
-
-.third {
-  background: #f5db13;
-  box-shadow: 0px 4px 16px rgba(1, 28, 64, 0.2);
+    .third {
+      background: $back-color;
+      box-shadow: 0px 4px 16px $shadow-color;
+    }
+  }
 }
