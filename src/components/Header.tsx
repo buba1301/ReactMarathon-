@@ -12,22 +12,22 @@ const Header = () => {
       <nav className={cn(s.w70)}>
         <ul className={cn(s.nav)}>
           <li className={cn(s.li)}>
-            <a href="/" className={cn(s.font)}>
+            <a href="/" className={cn(s.link)}>
               Home
             </a>
           </li>
           <li className={s.li}>
-            <a href="/poke" className={cn(s.font)}>
+            <a href="/poke" className={cn(s.link)}>
               Pokedex
             </a>
           </li>
           <li className={s.li}>
-            <a href="/legend" className={cn(s.font)}>
+            <a href="/legend" className={cn(s.link)}>
               Legendaries
             </a>
           </li>
           <li className={s.li}>
-            <a href="/404" className={cn(s.font)}>
+            <a href="/404" className={cn(s.link)}>
               Documentation
             </a>
           </li>
