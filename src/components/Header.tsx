@@ -16,7 +16,9 @@ const Header = () => {
           {navItems.map((item) => {
             return (
               <li className={cn(s.li)}>
-                <a href={`/${item}`}>item</a>
+                <a href={`/${item}`} className={cn(s.link)}>
+                  {item}
+                </a>
               </li>
             );
           })}
