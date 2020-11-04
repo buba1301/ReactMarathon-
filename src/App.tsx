@@ -7,14 +7,14 @@ import Footer from './components/Footer';
 
 const App = () => {
   return (
-    <div className={cn(s.homeDesktop)}>
-      <div className={cn(s.forFooter)}>
-        <Header />
-        <main className={s.padding}>Content</main>
-        <Footer />
-      </div>
+    <div className={cn(s.forFooter)}>
+      <Header />
+      <main className={s.padding}>Content</main>
+      <Footer />
     </div>
   );
 };
 
 export default App;
+
+// <div className={cn(s.homeDesktop)}></div>
