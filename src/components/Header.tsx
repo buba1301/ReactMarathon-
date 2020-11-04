@@ -14,9 +14,11 @@ const Header = () => {
       <nav className={cn(s.w70)}>
         <ul className={cn(s.nav)}>
           {navItems.map((item) => {
-            <li className={cn(s.li)}>
-              <a href={`/${item}`}>item</a>
-            </li>;
+            return (
+              <li className={cn(s.li)}>
+                <a href={`/${item}`}>item</a>
+              </li>
+            );
           })}
         </ul>
       </nav>
