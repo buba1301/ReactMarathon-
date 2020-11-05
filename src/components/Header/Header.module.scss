@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import '../../variables';
+
+@mixin font {
+  font-family: Karla, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 29px;
+}
+
+.root {
+  height: 93px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1125px;
+  height: 63px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 158px;
+  height: 63px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  max-width: 658px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.link {
+  @include font;
+  text-decoration: none;
+  color: $dark;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -8px;
+    height: 1px;
+    width: 1%;
+    background: $dark;
+    border: 1px solid $dark;
+    border-radius: 6px;
+    opacity: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transition: opacity, width ease-in-out 0.25s;
+  }
+
+  &:hover,
+  &.activeLink {
+    &:after {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+}
