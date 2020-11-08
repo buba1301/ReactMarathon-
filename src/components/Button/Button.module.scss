@@ -10,7 +10,7 @@
   cursor: pointer;
   outline: 0;
 
-  @include font(normal, bold, 23px, 27px, $dark);
+  @include font(normal, bold, 23px, 16px, $dark);
 
   display: flex;
   align-items: center;
