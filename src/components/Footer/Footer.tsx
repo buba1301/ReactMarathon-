@@ -11,11 +11,10 @@ const Footer = () => {
               Make with ❤️
             </span>
           </div>
-          <div>
-            <a href="##" className={s.ourTeam}>
-              Our team
-            </a>
-          </div>
+
+          <a href="##" className={s.ourTeam}>
+            Our team
+          </a>
         </div>
       </div>
     </footer>
