@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
 import s from './Header.module.scss';
 
@@ -42,9 +42,9 @@ const Header = () => {
         <div className={s.nav}>
           {navItems.map(({ id, link, name }) => {
             return (
-              <a key={id} href={`/${link}`} className={s.link}>
+              <Link key={id} to={`${link}`} className={s.link}>
                 {name}
-              </a>
+              </Link>
             );
           })}
         </div>

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Layout from '../../components/Layout/Layout';
 import Footer from '../../components/Footer/Footer';
@@ -9,7 +10,7 @@ import Heading from '../../components/Heading/Heading';
 
 import s from './Home.module.scss';
 
-const HomePage = () => {
+const HomePage: React.FC<RouteComponentProps> = ({ history: { push } }) => {
   return (
     <div className={s.root}>
       <Header />
@@ -21,7 +22,7 @@ const HomePage = () => {
           <Heading className={s.heading2}>
             You can know the type of Pokemon, its strengths, disadvantages and abilities
           </Heading>
-          <Button onClick={() => console.log('Button click!')} className={s.pockeButton}>
+          <Button onClick={() => push('/pockedex')} className={s.pockeButton}>
             See pokemons
           </Button>
         </div>
