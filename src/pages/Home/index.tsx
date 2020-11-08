@@ -22,7 +22,7 @@ const HomePage: React.FC<RouteComponentProps> = ({ history: { push } }) => {
           <Heading className={s.heading2}>
             You can know the type of Pokemon, its strengths, disadvantages and abilities
           </Heading>
-          <Button onClick={() => push('/pockedex')} className={s.pockeButton}>
+          <Button onClick={() => push('/pockedex')} size="normal">
             See pokemons
           </Button>
         </div>
