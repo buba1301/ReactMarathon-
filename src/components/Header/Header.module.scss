@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 @import '../../variables';
 
-@mixin font {
-  font-family: Karla, Arial, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 29px;
-}
-
 .root {
   height: 93px;
   display: flex;
@@ -39,9 +31,8 @@
 }
 
 .link {
-  @include font;
+  @include font(normal, normal, 25px, 29px, $dark);
   text-decoration: none;
-  color: $dark;
   position: relative;
 
   &:after {
