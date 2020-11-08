@@ -1,41 +1,35 @@
 @import '../../variables';
 @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
-@mixin font {
-  font-family: Karla, Arial, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 21px;
-  color: $dark;
-}
-
 .footer {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  height: 66px;
+  height: 50px;
+
+  // background-color: red;
 }
 
 .wrap {
   width: 100%;
   max-width: 1125px;
-  height: 22px;
+  height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .makeLove {
-  @include font;
+  @include font(normal, normal, 18px, 21px, $dark);
   width: 112px;
   height: 21px;
 }
 
 .ourTeam {
   text-decoration: none;
-  @include font;
+  @include font(normal, normal, 18px, 21px, $dark);
   width: 91px;
   height: 21px;
+  cursor: pointer;
 }
