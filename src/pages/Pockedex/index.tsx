@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 
 import s from './Pockedex.module.scss';
@@ -5,18 +6,9 @@ import s from './Pockedex.module.scss';
 import Header from '../../components/Header/Header';
 import Layout from '../../components/Layout/Layout';
 import Footer from '../../components/Footer/Footer';
+import Card from '../../components/Card/Card';
 
-const cards = [
-  'Pachirisu',
-  'Pyroar',
-  'Pikachu',
-  'Quilava',
-  'Squirtle',
-  'Charizard',
-  'Mudkip',
-  'Jigglypuff',
-  'Tyranitar',
-];
+import pokemonsApi from './pokemons';
 
 const Pockedex = () => {
   return (
@@ -27,10 +19,8 @@ const Pockedex = () => {
         <input placeholder="Encuentra tu pokémon..." />
         <div className={s.filtersConteiner}>Here was filters</div>
         <div className={s.cardConteiner}>
-          {cards.map((name) => (
-            <div key={name} className={s.card}>
-              {name}
-            </div>
+          {pokemonsApi.map(({ name_clean, stats: { attack, defense }, types, img, id }) => (
+            <Card key={id} name={name_clean} attack={attack} defense={defense} types={types} img={img} />
           ))}
         </div>
       </Layout>
