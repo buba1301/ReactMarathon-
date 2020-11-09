@@ -26,9 +26,7 @@ const HomePage: React.FC<RouteComponentProps> = ({ history: { push } }) => {
             See pokemons
           </Button>
         </div>
-        <div className={s.contentParallax}>
-          <Parallax />
-        </div>
+        <Parallax />
       </Layout>
       <Footer />
     </div>

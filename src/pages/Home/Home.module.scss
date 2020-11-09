@@ -2,15 +2,20 @@
 
 .root {
   height: 100vh;
+  // display: grid;
+  // grid-template-rows: auto 1fr auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow-y: auto;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
 
 .contentWrap {
+  height: 100%;
   display: flex;
+  flex: wrap;
+  flex: 0 1 auto;
   justify-content: center;
   align-items: center;
 }
@@ -25,7 +30,7 @@
 }
 
 .contentParallax {
-  display: block;
+  //display: block;
   // justify-content: space-between;
   // align-items: flex-start;
 }
