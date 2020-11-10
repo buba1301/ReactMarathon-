@@ -40,7 +40,7 @@ const Pockedex = () => {
           </div>
           <div className={s.filtersConteiner}>Here will be filters</div>
         </Layout>
-        <Layout className={s.containerCards}>
+        <Layout>
           <div className={s.cardConteiner}>
             {pokemonList.map(({ name_clean, stats: { attack, defense }, types, img, id }) => (
               <Card key={id} name={name_clean} attack={attack} defense={defense} types={types} img={img} />
