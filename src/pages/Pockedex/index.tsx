@@ -69,21 +69,21 @@ const Pockedex = () => {
   return (
     <div className={s.root}>
       <Header />
-      <div className={s.containerWrap}>
-        <Layout className={s.containerInput}>
+      <Layout className={s.containerWrap}>
+        <div className={s.containerInput}>
           <Heading className={s.heading}>
             800 <b>Pokemons</b> for you to choose your favorite
           </Heading>
           <div className={s.inputWrap}>
             <input type="search" placeholder="Encuentra tu pokémon..." />
           </div>
-          <div className={s.filtersConteiner}>
-            {filterNames.map((name) => (
-              <Dropdown name={name} />
-            ))}
-          </div>
-        </Layout>
-        <Layout>
+        </div>
+        <div className={s.filtersConteiner}>
+          {filterNames.map((name) => (
+            <Dropdown key={name} name={name} />
+          ))}
+        </div>
+        <div>
           <div className={s.cardConteiner}>
             {pokemonList.map(({ name_clean, stats, types, img, id }: IPokemonsApi) => {
               const props = {
@@ -97,13 +97,13 @@ const Pockedex = () => {
               return <Card {...props} />;
             })}
           </div>
-        </Layout>
+        </div>
         <div className={s.loader}>
           {pagination.map((id) => (
             <input key={id} id={id} type="radio" checked={currentPage === id} onChange={handleClick} />
           ))}
         </div>
-      </div>
+      </Layout>
       <Footer />
     </div>
   );

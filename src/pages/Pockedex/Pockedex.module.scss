@@ -1,30 +1,35 @@
 @import '../../variables';
 
 .root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  // height: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
   background: $white;
 }
 
 .containerWrap {
-  height: 738px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  // height: 738px;
+  // padding-top: 10px;
+  // padding-bottom: 10px;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // align-items: center;
+  display: grid;
+  grid-template-rows: 183px 55px 500px 50px;
+  grid-template-columns: auto;
+  // justify-content: center;
+  // margin-bottom: 50px;
 }
 
 .containerInput {
-  height: 238px;
+  height: 183px;
   padding-top: 10px;
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -62,34 +67,38 @@
   height: 30px;
   width: 533px;
   display: flex;
-  justify-content: space-between;
-  margin-right: 450px;
+  justify-content: space-around;
+  margin-left: 100px;
   // align-items: flex-start;
 }
 
-.containerCards {
-  height: 500px;
+/* .containerCards {
+  // height: 500px;
   //padding-top: 30px;
   // padding-bottom: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-}
+  justify-content: space-around;
+  //align-items: flex-start;
+} */
 
 .cardConteiner {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 5px;
-  height: 500px;
+  // height: 500px;
 }
 
 .loader {
   height: 8px;
-  width: 100px;
-  padding-top: 30px;
+  // width: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-radius: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   input {
     cursor: pointer;

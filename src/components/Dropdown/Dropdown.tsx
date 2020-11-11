@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from '../Button/Index';
 
 import s from './Dropdown.module.scss';
 
@@ -8,16 +7,28 @@ interface DropDownProps {
   name: string;
 }
 
+interface IFilters {
+  [key: string]: string[];
+}
+
+const filters: IFilters = {
+  Type: ['Fire', 'Normal', 'Electric', 'Water'],
+  Attack: ['< 50', '50-100', '100 - 150', '150 <'],
+  Experience: ['< 50', '50-100', '100 - 150', '150 <'],
+};
+
 const Dropdown: React.FC<DropDownProps> = ({ name }) => {
   return (
     <div className={s.dropdown}>
-      <Button onClick={() => {}} size="small">
-        {name}
-      </Button>
+      <span className={s.label}>{name}</span>
+
       <div id="myDropdown" className={s.dropdownContent}>
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+        {filters[name].map((filter) => (
+          <div>
+            <input type="checkbox" />
+            {filter}
+          </div>
+        ))}
       </div>
     </div>
   );
