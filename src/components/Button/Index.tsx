@@ -3,11 +3,15 @@ import cn from 'classnames';
 
 import s from './Button.module.scss';
 
+type Size = 'small' | 'normal';
+
+type Color = 'yellow' | 'green';
+
 interface ButtonProps {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   block?: boolean;
-  color?: string;
-  size: string;
+  color?: Color;
+  size: Size;
 }
 
 const Button: React.FC<ButtonProps> = ({ children, onClick, block = false, color = 'green', size }) => {
@@ -21,5 +25,3 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, block = false, color
 };
 
 export default Button;
-
-// className={cn(s.root, {[s.yellow]:yellow})}

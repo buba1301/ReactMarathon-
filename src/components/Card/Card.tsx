@@ -28,14 +28,18 @@ type Type =
   | 'electric';
 
 interface ICard {
+  // key: number;
   name: string;
-  attack: number;
-  defense: number;
+  stats: {
+    attack: number;
+    defense: number;
+  };
   types: Type[];
   img: string;
 }
 
-const PokemonCard: React.FC<ICard> = ({ name, attack, defense, types, img }) => {
+const PokemonCard = ({ name, stats, types, img }: ICard) => {
+  const { attack, defense } = stats;
   const [generalType] = types;
 
   return (
@@ -54,7 +58,9 @@ const PokemonCard: React.FC<ICard> = ({ name, attack, defense, types, img }) => 
         </div>
         <div className={s.labelWrap}>
           {types.map((type) => (
-            <span className={cn(s.label, s[type])}>{type}</span>
+            <span key={type} className={cn(s.label, s[type])}>
+              {type}
+            </span>
           ))}
         </div>
       </div>

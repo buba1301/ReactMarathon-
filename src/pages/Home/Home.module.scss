@@ -1,7 +1,7 @@
 @import '../../variables';
 
 .root {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -25,12 +25,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-}
-
-.contentParallax {
-  //display: block;
-  // justify-content: space-between;
-  // align-items: flex-start;
 }
 
 .heading1 {
