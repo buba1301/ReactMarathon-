@@ -8,6 +8,7 @@ import Layout from '../Layout/Layout';
 import Heading from '../Heading/Heading';
 
 import s from './NotFoundPage.module.scss';
+import { LinkEnum } from '../../routes';
 
 const NotFoundPage = () => {
   return (
@@ -18,7 +19,7 @@ const NotFoundPage = () => {
         <Heading className={s.text}>
           <span>The rocket team</span> has won this time.
         </Heading>
-        <Button onClick={() => navigate('/')} size="normal" color="yellow">
+        <Button onClick={() => navigate(LinkEnum.HOME)} size="normal" color="yellow">
           Return
         </Button>
       </Layout>
