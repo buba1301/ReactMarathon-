@@ -24,7 +24,7 @@ const Dropdown: React.FC<DropDownProps> = ({ name }) => {
 
       <div id="myDropdown" className={s.dropdownContent}>
         {filters[name].map((filter) => (
-          <div>
+          <div key={filter}>
             <input type="checkbox" />
             {filter}
           </div>
