@@ -6,35 +6,13 @@ import Heading from '../Heading/Heading';
 
 import s from './Card.module.scss';
 
-type Type =
-  | 'stile'
-  | 'dark'
-  | 'rock'
-  | 'grass'
-  | 'bug'
-  | 'fire'
-  | 'fighting'
-  | 'dragon'
-  | 'water'
-  | 'ice'
-  | 'normal'
-  | 'flying'
-  | 'gosth'
-  | 'poison'
-  | 'psychic'
-  | 'fairy'
-  | 'ghost'
-  | 'ground'
-  | 'electric';
-
 interface ICard {
-  // key: number;
   name: string;
   stats: {
     attack: number;
     defense: number;
   };
-  types: Type[];
+  types: string[];
   img: string;
 }
 
@@ -58,13 +36,13 @@ const PokemonCard = ({ name, stats, types, img }: ICard) => {
         </div>
         <div className={s.labelWrap}>
           {types.map((type) => (
-            <span key={type} className={cn(s.label, s[type])}>
+            <span key={type} className={cn(s.label, s[type as keyof typeof s])}>
               {type}
             </span>
           ))}
         </div>
       </div>
-      <div className={cn(s.pictureWrap, s[generalType])}>
+      <div className={cn(s.pictureWrap, s[generalType as keyof typeof s])}>
         <img src={img} alt={capitalize(name)} />
       </div>
     </div>

@@ -1,6 +1,8 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
+import camalize from 'camelize';
 
 import s from './Pockedex.module.scss';
 
@@ -12,44 +14,23 @@ import Footer from '../../components/Footer/Footer';
 
 import { host, getQueryParams } from '../../routes';
 
-type Type =
-  | 'stile'
-  | 'dark'
-  | 'rock'
-  | 'grass'
-  | 'bug'
-  | 'fire'
-  | 'fighting'
-  | 'dragon'
-  | 'water'
-  | 'ice'
-  | 'normal'
-  | 'flying'
-  | 'gosth'
-  | 'poison'
-  | 'psychic'
-  | 'fairy'
-  | 'ghost'
-  | 'ground'
-  | 'electric';
 interface IPokemonsApi {
-  name_clean: string;
+  name: string;
   id: number;
   stats: {
     attack: number;
     defense: number;
   };
-  types: Type[];
+  types: string[];
   img: string;
 }
-
-type IData = {
+interface IData {
   total?: number;
   count?: number;
   offset?: number;
   limit?: string;
   pokemons?: IPokemonsApi[];
-};
+}
 
 interface IUsePokemon {
   isLoading: boolean;
@@ -75,7 +56,7 @@ const usePokemons = (currentPage: string): IUsePokemon => {
         const response = await fetch(url);
         const result = await response.json();
 
-        setData(result);
+        setData(camalize(result));
       } catch (e) {
         setIsError(true);
       } finally {
@@ -130,10 +111,10 @@ const Pockedex = () => {
         <div>
           <div className={s.cardConteiner}>
             {pokemons &&
-              pokemons.map(({ name_clean, stats, types, img, id }: IPokemonsApi) => {
+              pokemons.map(({ name, stats, types, img, id }: IPokemonsApi) => {
                 const props = {
                   key: id,
-                  name: name_clean,
+                  name,
                   stats,
                   types,
                   img,
