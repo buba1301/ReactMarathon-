@@ -11,6 +11,7 @@ import Card from '../../components/Card/Card';
 import Heading from '../../components/Heading/Heading';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Footer from '../../components/Footer/Footer';
+import Spinner from '../../components/Spinner';
 
 import { host, getQueryParams } from '../../routes';
 
@@ -85,7 +86,7 @@ const Pockedex = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (isError) {

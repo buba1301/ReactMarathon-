@@ -1,7 +1,12 @@
 import React from 'react';
+import Modal from '../../components/Modal';
 
 const Legendaries = () => {
-  return <div>Hello!</div>;
+  return (
+    <div>
+      <Modal />
+    </div>
+  );
 };
 
 export default Legendaries;

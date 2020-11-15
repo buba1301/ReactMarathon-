@@ -1,0 +1,228 @@
+@import '../../variables';
+
+.root {
+  width: 796px;
+  height: 372px;
+  box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  margin-left: 100px;
+  cursor: pointer;
+  // z-index: 0;
+  transition: all ease-in-out 0.15s;
+}
+
+.imageConteiner {
+  position: absolute;
+  width: 364px;
+  height: 372px;
+  z-index: 0;
+  background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
+  box-shadow: 4px 4px 8px rgba(1, 28, 64, 0.2);
+}
+
+.pictureWrap {
+  width: 341px;
+  height: 348px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 100%;
+  }
+}
+
+.labelWrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  bottom: 15px;
+  right: 25px;
+}
+
+.label {
+  box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
+  border-radius: 11px;
+  background: $primary;
+  width: 73px;
+  height: 16px;
+  min-width: 60px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: #212121;
+  padding: 0 12px 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.infoWrap {
+  width: 432px;
+  height: 372px;
+  position: absolute;
+  display: grid;
+  grid-template-rows: 96px 80px 90px 90px;
+  right: 0;
+  background: linear-gradient(180deg, #732119 42.19%, #d93e30 100%);
+}
+
+.textWrap {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nameConteiner {
+  width: 169px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 15px;
+  @include font(normal, 700, 30px, 36px, $white);
+}
+
+.generationContainer {
+  width: 140px;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+  margin-left: auto;
+  @include font(normal, 400, 24px, 30px, $white);
+}
+
+.statValue {
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 18px;
+  color: #212121;
+  background-color: $third;
+  margin-right: 25px;
+  margin-bottom: 20px;
+}
+
+.abilities {
+  position: relative;
+  background: $white;
+  height: 59px;
+  width: 264px;
+  left: 15px;
+  top: 0px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding-left: 20px;
+  @include font(normal, 400, 16px, 20px, $dark);
+}
+
+.experience {
+  position: relative;
+  background: $white;
+  height: 78px;
+  width: 400px;
+  top: 0px;
+  left: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hp {
+  width: 140px;
+  height: 45px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  @include font(normal, 400, 16px, 10px, $dark);
+}
+
+.cardValue {
+  @include font(normal, 700, 16px, 10px, $dark);
+}
+
+.cardLabel {
+  height: 5px;
+  width: 137px;
+  border-radius: 8px;
+  border: 1px solid;
+  border-radius: 8px;
+
+  span {
+    display: block;
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(270deg, #64d368 0.15%, #64d368 70.88%);
+  }
+}
+
+.cardBoxSquare {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  top: 10px;
+  // center;
+}
+
+.card {
+  height: 69px;
+  width: 82px;
+  border-radius: 8px;
+  background: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.statValueCard {
+  width: 41px;
+  height: 41px;
+  border: 3px solid #212121;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 18px;
+  color: #212121;
+  background-color: $white;
+}
+
+.statText {
+  @include font(normal, 400, 12px, 14px, $dark);
+}
