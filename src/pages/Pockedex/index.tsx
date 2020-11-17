@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 import camalize from 'camelize';
+import cn from 'classnames';
 
 import s from './Pockedex.module.scss';
 
@@ -12,10 +12,11 @@ import Heading from '../../components/Heading/Heading';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Footer from '../../components/Footer/Footer';
 import Spinner from '../../components/Spinner';
+import Modal from '../../components/Modal';
 
 import { host, getQueryParams } from '../../routes';
 
-interface IPokemonsApi {
+export interface IPokemonsApi {
   name: string;
   id: number;
   stats: {
@@ -24,6 +25,8 @@ interface IPokemonsApi {
   };
   types: string[];
   img: string;
+  abilities: string[];
+  baseExperience: number;
 }
 interface IData {
   total?: number;
@@ -44,15 +47,15 @@ const pagination: string[] = ['1', '2', '3', '4', '5'];
 const filterNames: string[] = ['Type', 'Attack', 'Experience'];
 
 const usePokemons = (currentPage: string): IUsePokemon => {
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [data, setData] = useState<IData>({});
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
     const getPokemons = async () => {
       setIsLoading(true);
       try {
-        const offset = getQueryParams('offset', currentPage);
+        const offset = getQueryParams('limit', '1050');
         const url = [host, offset].join('&');
         const response = await fetch(url);
         const result = await response.json();
@@ -75,7 +78,9 @@ const usePokemons = (currentPage: string): IUsePokemon => {
 };
 
 const Pockedex = () => {
-  const [currentPage, setCurrentPage] = useState('1');
+  const [currentPage, setCurrentPage] = useState<string>('1');
+  const [showModal, setShowModal] = useState<string>('close');
+  const [pokemon, setPokemon] = useState<IPokemonsApi | null>(null);
 
   const { data, isLoading, isError } = usePokemons(currentPage);
 
@@ -84,6 +89,20 @@ const Pockedex = () => {
   const handleClick = ({ target: { id } }: React.ChangeEvent) => {
     setCurrentPage(id);
   };
+
+  const handleOpenModal = ({ target: { id } }: React.ChangeEvent): void => {
+    const currentPokemon = pokemons.find((pokemon) => pokemon.id === +id);
+
+    setPokemon(currentPokemon);
+    setShowModal('open');
+  };
+
+  const handleCloseModal = () => {
+    setShowModal('close');
+    setPokemon(null);
+  };
+
+  const classNamesOverlay = cn(s.overlay, s[showModal as keyof typeof s]);
 
   if (isLoading) {
     return <Spinner />;
@@ -115,10 +134,12 @@ const Pockedex = () => {
               pokemons.map(({ name, stats, types, img, id }: IPokemonsApi) => {
                 const props = {
                   key: id,
+                  id,
                   name,
                   stats,
                   types,
                   img,
+                  handleOpenModal,
                 };
 
                 return <Card {...props} />;
@@ -132,6 +153,9 @@ const Pockedex = () => {
         </div>
       </Layout>
       <Footer />
+      {pokemon && <Modal pokemon={pokemon} handleCloseModal={handleCloseModal} showModal={showModal} />}
+
+      <div className={classNamesOverlay} onClick={handleCloseModal} role="presentation" />
     </div>
   );
 };

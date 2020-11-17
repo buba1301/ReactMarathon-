@@ -2,12 +2,15 @@
 // Please do not change this file!
 interface CssExports {
   cardConteiner: string;
+  close: string;
   containerInput: string;
   containerWrap: string;
   filtersConteiner: string;
   heading: string;
   inputWrap: string;
   loader: string;
+  open: string;
+  overlay: string;
   root: string;
 }
 export const cssExports: CssExports;

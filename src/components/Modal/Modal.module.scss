@@ -1,16 +1,56 @@
 @import '../../variables';
 
-.root {
+.closeButton {
+  width: 32px;
+  height: 32px;
+
+  z-index: 1010;
+  position: absolute;
+  top: 22%;
+  left: 72%;
+
+  cursor: pointer;
+}
+
+.modal {
   width: 796px;
+  max-width: 100%;
   height: 372px;
+  max-height: 100%;
   box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
   border-radius: 16px;
   overflow: hidden;
-  position: relative;
+
+  // position: relative;
+  z-index: 1010;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+
   margin-left: 100px;
   cursor: pointer;
-  // z-index: 0;
   transition: all ease-in-out 0.15s;
+}
+
+.open {
+  display: block;
+}
+
+.close {
+  display: none;
+}
+
+.overlay {
+  z-index: 1000px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .imageConteiner {
@@ -40,6 +80,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
   position: absolute;
   bottom: 15px;
   right: 25px;
@@ -52,17 +93,14 @@
   width: 73px;
   height: 16px;
   min-width: 60px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 14px;
+  @include font(normal, normal, 12px, 14px, $dark);
   text-align: center;
-  color: #212121;
   padding: 0 12px 2px;
+  margin-right: 12px;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 12px;
 
   &:last-child {
     margin-right: 0;
@@ -73,14 +111,17 @@
   width: 432px;
   height: 372px;
   position: absolute;
+  right: 0;
+
   display: grid;
   grid-template-rows: 96px 80px 90px 90px;
-  right: 0;
+
   background: linear-gradient(180deg, #732119 42.19%, #d93e30 100%);
 }
 
 .textWrap {
   position: relative;
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -89,75 +130,89 @@
 .nameConteiner {
   width: 169px;
   height: 30px;
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
   margin-left: 15px;
+
   @include font(normal, 700, 30px, 36px, $white);
 }
 
 .generationContainer {
   width: 140px;
   height: 30px;
+
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
   margin-right: 20px;
   margin-left: auto;
+
   @include font(normal, 400, 24px, 30px, $white);
 }
 
-.statValue {
+.statsSum {
   width: 41px;
   height: 41px;
   border-radius: 50%;
   overflow: hidden;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 18px;
-  color: #212121;
+
+  @include font(normal, normal, 15px, 18px, $dark);
+
   background-color: $third;
+
   margin-right: 25px;
   margin-bottom: 20px;
 }
 
 .abilities {
   position: relative;
-  background: $white;
   height: 59px;
   width: 264px;
   left: 15px;
   top: 0px;
+
   border-radius: 8px;
+  padding-left: 20px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  padding-left: 20px;
+
+  background: $white;
   @include font(normal, 400, 16px, 20px, $dark);
 }
 
 .experience {
   position: relative;
-  background: $white;
+
   height: 78px;
   width: 400px;
   top: 0px;
   left: 15px;
+
   border-radius: 8px;
+
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  background: $white;
 }
 
 .hp {
   width: 140px;
   height: 45px;
   margin-right: 20px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -189,17 +244,19 @@
 
 .cardBoxSquare {
   position: relative;
+  top: 10px;
+
   display: flex;
   justify-content: space-around;
-  top: 10px;
-  // center;
 }
 
 .card {
   height: 69px;
   width: 82px;
   border-radius: 8px;
+
   background: $white;
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -209,17 +266,18 @@
 .statValueCard {
   width: 41px;
   height: 41px;
+
   border: 3px solid #212121;
   border-radius: 50%;
+
   overflow: hidden;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 18px;
-  color: #212121;
+
+  @include font(normal, normal, 15px, 18px, $dark);
+
   background-color: $white;
 }
 

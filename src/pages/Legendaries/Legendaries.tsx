@@ -1,12 +1,7 @@
-import React from 'react';
-import Modal from '../../components/Modal';
+// import React from 'react';
 
-const Legendaries = () => {
-  return (
-    <div>
-      <Modal />
-    </div>
-  );
-};
+// import s from './Legendaries.module.scss';
+
+const Legendaries = () => {};
 
 export default Legendaries;
