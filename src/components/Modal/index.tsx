@@ -10,7 +10,6 @@ import { IPokemonsApi } from '../../pages/Pockedex';
 
 interface IModalProps {
   showModal: string;
-  // setShowModal: React.Dispatch<React.SetStateAction<string>>;
   handleCloseModal: (event: React.MouseEvent<HTMLDivElement>) => void;
   pokemon: IPokemonsApi;
 }
