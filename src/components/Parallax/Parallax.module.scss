@@ -1,16 +1,15 @@
 .root {
-  //width: 793px;
-  //height: 557px;
+  width: 760px;
+  height: 557px;
   position: relative;
   margin-right: -115px;
   overflow: hidden;
-  // overflow-y: hidden;
 }
 
 .smallPokeBall {
   position: absolute;
   right: 67%;
-  bottom: 67%;
+  bottom: 75%;
 }
 
 .cloud {
@@ -22,17 +21,24 @@
 .cloudBig {
   position: absolute;
   left: 50%;
-  top: 10%;
+  top: 0%;
 }
 
 .pokeBall {
   position: absolute;
-  left: 73%;
+  left: 60%;
   bottom: 30%;
 }
 
 .pikachu {
   position: absolute;
   top: -2%;
-  right: 28%;
+  right: 25%;
+}
+
+@media (max-width: 768px) {
+  .root {
+    width: 750px;
+    margin-right: -17px;
+  }
 }

@@ -10,5 +10,8 @@ start:
 lint:
 	npx eslint ./src
 
+stylelint:
+	npx stylelint "**/*.scss"
+
 pretty:
 	yarn pretty-quick

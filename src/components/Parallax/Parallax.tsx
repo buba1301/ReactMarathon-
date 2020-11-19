@@ -5,7 +5,7 @@ import s from './Parallax.module.scss';
 
 import SmallPokeBallPng from './assets/PokeBall1-2.png';
 import CloudPng from './assets/CloudSmall1.png';
-import PokeBallPng from './assets/PokeBall2-3.png';
+import PokeBallPng from './assets/PokeBall2-6.png';
 import CloudBigPng from './assets/CloudBig.png';
 import PikachuPng from './assets/Pikachu-5.png';
 
@@ -38,7 +38,7 @@ const Parallax = () => {
       <div className={s.pokeBall} style={{ transform: `translate(${screenX * 0.03}px, ${screenY * 0.03}px)` }}>
         <img src={PokeBallPng} alt="Big PokeBall" />
       </div>
-      <div className={s.pikachu} style={{ transform: `translate(${screenX * 0.06}px, ${screenY * -0.02}px)` }}>
+      <div className={s.pikachu} style={{ transform: `translate(${screenX * 0.04}px, ${screenY * -0.02}px)` }}>
         <img src={PikachuPng} alt="Cloud PokeBall" />
       </div>
     </div>

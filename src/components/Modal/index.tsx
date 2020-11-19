@@ -1,15 +1,17 @@
 import React from 'react';
 import { capitalize } from 'lodash';
-import cn from 'classnames';
 
 import s from './Modal.module.scss';
 
 import closeIcon from './assets/closeIcon.png';
 
-import { IPokemonsApi } from '../../pages/Pockedex';
+import useLockBodyScroll from '../../hook/lockBodyScroll';
 
+import { IPokemonsApi } from '../../pages/Pockedex';
+// TODO: добавить цвета на модалку:
+// TODO: поправить расположение имени на модалке
 interface IModalProps {
-  showModal: string;
+  showModal: boolean;
   handleCloseModal: (event: React.MouseEvent<HTMLDivElement>) => void;
   pokemon: IPokemonsApi;
 }
@@ -28,16 +30,14 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
 
   const getPercentForWidth = (value: number): number => (value / 1000) * 100;
 
-  const classNamesCloseIcone = cn(s.closeButton, s[showModal as keyof typeof s]);
-
-  const classNamesModal = cn(s.modal, s[showModal as keyof typeof s]);
+  useLockBodyScroll(showModal);
 
   return (
     <>
-      <div className={classNamesCloseIcone} onClick={handleCloseModal} role="presentation">
+      <div className={s.closeButton} onClick={handleCloseModal} role="presentation">
         <img src={closeIcon} alt="closeIcon" />
       </div>
-      <div className={classNamesModal}>
+      <div className={s.modal}>
         <div className={s.imageConteiner}>
           <img className={s.pictureWrap} src={img} alt={name} />
           <div className={s.labelWrap}>
@@ -87,6 +87,7 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
           </div>
         </div>
       </div>
+      <div className={s.overlay} onClick={handleCloseModal} role="presentation" />
     </>
   );
 };

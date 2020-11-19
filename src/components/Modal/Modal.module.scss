@@ -1,14 +1,13 @@
 @import '../../variables';
-
+//TODO: модалка для мобилы
+//TODO: позиционирование окна и крестика
 .closeButton {
   width: 32px;
   height: 32px;
-
   z-index: 1010;
   position: absolute;
-  top: 22%;
-  left: 72%;
-
+  top: 35%;
+  left: 73%;
   cursor: pointer;
 }
 
@@ -24,33 +23,12 @@
   // position: relative;
   z-index: 1010;
   position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-
+  top: 55%;
+  left: 30%;
+  transform: translate(-30%, -30%);
   margin-left: 100px;
   cursor: pointer;
   transition: all ease-in-out 0.15s;
-}
-
-.open {
-  display: block;
-}
-
-.close {
-  display: none;
-}
-
-.overlay {
-  z-index: 1000px;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  background: rgba(0, 0, 0, 0.6);
 }
 
 .imageConteiner {
@@ -283,4 +261,16 @@
 
 .statText {
   @include font(normal, 400, 12px, 14px, $dark);
+}
+
+.overlay {
+  z-index: 1000px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.6);
 }

@@ -6,15 +6,21 @@
 }
 
 .contentWrap {
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 500px auto;
+  // display: grid;
+  // grid-template-rows: auto;
+  // grid-template-columns: 500px auto;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
   padding-top: 67px;
-  padding-bottom: 67px;
+  padding-bottom: 55px;
 }
 
 .contentText {
-  height: 557px;
+  height: 520px;
+  width: 520px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,13 +28,34 @@
 }
 
 .heading1 {
+  width: 515px;
+  // padding-right: 100px;
   @include font(normal, normal, 72px, 84px, $dark);
 }
 
 .heading2 {
+  width: 515px;
   @include font(normal, normal, 32px, 37px, $dark);
 }
 
 .pockeButton {
   color: $dark;
+}
+
+@media (max-width: 768px) {
+  .contentText {
+    height: 450px;
+    width: 700px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .heading1 {
+    width: 650px;
+    text-align: center;
+  }
+
+  .heading2 {
+    text-align: center;
+  }
 }

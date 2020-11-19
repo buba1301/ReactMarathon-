@@ -1,7 +1,6 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import cn from 'classnames';
 
 import s from './Pockedex.module.scss';
 
@@ -55,7 +54,7 @@ const Pockedex = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   const [query, setQuery] = useState<object>({ limit: pokemonsOnPage });
   const [currentPage, setCurrentPage] = useState<string>('1');
-  const [showModal, setShowModal] = useState<string>('close');
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [pokemon, setPokemon] = useState<IPokemonsApi | null | undefined>(null);
 
   const { data, isLoading, isError } = useData<IUsePokemon>('getPokemons', query, [searchValue, currentPage]);
@@ -82,15 +81,13 @@ const Pockedex = () => {
     const currentPokemon = data && data.pokemons.find((pokemon: IPokemonsApi): boolean => pokemon.id === +e.target.id);
 
     setPokemon(currentPokemon);
-    setShowModal('open');
+    setShowModal(!showModal);
   };
 
   const handleCloseModal = () => {
-    setShowModal('close');
+    setShowModal(!showModal);
     setPokemon(null);
   };
-
-  const classNamesOverlay = cn(s.overlay, s[showModal as keyof typeof s]);
 
   if (isLoading) {
     return <Spinner />;
@@ -104,9 +101,7 @@ const Pockedex = () => {
     <div className={s.root}>
       <Layout className={s.containerWrap}>
         <div className={s.containerInput}>
-          <Heading className={s.heading}>
-            {data && data.total} <b>Pokemons</b> for you to choose your favorite
-          </Heading>
+          <Heading className={s.heading}>{data && data.total} Pokemons for you to choose your favorite</Heading>
           <div className={s.inputWrap}>
             <input type="text" value={searchValue} placeholder="Encuentra tu pokémon..." onChange={handleSeachChange} />
           </div>
@@ -139,13 +134,9 @@ const Pockedex = () => {
             <input key={id} id={id} type="radio" checked={currentPage === id} onChange={handleChangePage} />
           ))}
         </div>
+        <Footer />
+        {showModal && pokemon && <Modal pokemon={pokemon} handleCloseModal={handleCloseModal} showModal={showModal} />}
       </Layout>
-
-      <Footer />
-
-      {pokemon && <Modal pokemon={pokemon} handleCloseModal={handleCloseModal} showModal={showModal} />}
-
-      <div className={classNamesOverlay} onClick={handleCloseModal} role="presentation" />
     </div>
   );
 };
