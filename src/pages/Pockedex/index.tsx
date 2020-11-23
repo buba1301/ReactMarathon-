@@ -13,6 +13,7 @@ import Spinner from '../../components/Spinner';
 import Modal from '../../components/Modal';
 
 import useData from '../../hook/getData';
+import useDebounce from '../../hook/useDebounce';
 
 export interface IPokemonsApi {
   name: string;
@@ -57,7 +58,9 @@ const Pockedex = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [pokemon, setPokemon] = useState<IPokemonsApi | null | undefined>(null);
 
-  const { data, isLoading, isError } = useData<IUsePokemon>('getPokemons', query, [searchValue, currentPage]);
+  const debounceValue = useDebounce(searchValue, 500);
+
+  const { data, isLoading, isError } = useData<IUsePokemon>('getPokemons', query, [debounceValue, currentPage]);
 
   const handleSeachChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -78,7 +81,11 @@ const Pockedex = () => {
   };
 
   const handleOpenModal = (e: React.MouseEvent<HTMLDivElement>): void => {
-    const currentPokemon = data && data.pokemons.find((pokemon: IPokemonsApi): boolean => pokemon.id === +e.target.id);
+    const currentPokemon =
+      data &&
+      data.pokemons.find((pokemon: IPokemonsApi): boolean => {
+        return pokemon.id === +(e.target as HTMLElement).id;
+      });
 
     setPokemon(currentPokemon);
     setShowModal(!showModal);
@@ -101,7 +108,9 @@ const Pockedex = () => {
     <div className={s.root}>
       <Layout className={s.containerWrap}>
         <div className={s.containerInput}>
-          <Heading className={s.heading}>{data && data.total} Pokemons for you to choose your favorite</Heading>
+          <Heading className={s.heading}>
+            {!isLoading && data && data.total} Pokemons for you to choose your favorite
+          </Heading>
           <div className={s.inputWrap}>
             <input type="text" value={searchValue} placeholder="Encuentra tu pokémon..." onChange={handleSeachChange} />
           </div>
@@ -113,7 +122,8 @@ const Pockedex = () => {
         </div>
         <div>
           <div className={s.cardConteiner}>
-            {data &&
+            {!isLoading &&
+              data &&
               data.pokemons.map(({ name, stats, types, img, id }: IPokemonsApi) => {
                 const props = {
                   key: id,

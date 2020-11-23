@@ -20,7 +20,6 @@
   border-radius: 16px;
   overflow: hidden;
 
-  // position: relative;
   z-index: 1010;
   position: absolute;
   top: 55%;
@@ -36,7 +35,7 @@
   width: 364px;
   height: 372px;
   z-index: 0;
-  background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
+  // background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
   box-shadow: 4px 4px 8px rgba(1, 28, 64, 0.2);
 }
 
@@ -93,8 +92,6 @@
 
   display: grid;
   grid-template-rows: 96px 80px 90px 90px;
-
-  background: linear-gradient(180deg, #732119 42.19%, #d93e30 100%);
 }
 
 .textWrap {
@@ -273,4 +270,47 @@
   height: 100%;
 
   background: rgba(0, 0, 0, 0.6);
+}
+
+.stile,
+.dark,
+.rock {
+  background: map-get($backgroundType, dark);
+}
+
+.grass,
+.bug {
+  background: map-get($backgroundType, grass);
+}
+
+.fire,
+.fighting,
+.dragon {
+  background: map-get($backgroundType, fire);
+}
+
+.water,
+.ice {
+  background: map-get($backgroundType, water);
+}
+
+.normal,
+.flying,
+.gosth {
+  background: map-get($backgroundType, flying);
+}
+
+.poison,
+.psychic,
+.fairy,
+.ghost {
+  background: map-get($backgroundType, poison);
+}
+
+.ground {
+  background: map-get($backgroundType, ground);
+}
+
+.electric {
+  background: map-get($backgroundType, electric);
 }

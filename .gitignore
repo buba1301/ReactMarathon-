@@ -1,3 +1,6 @@
 node modules/
 node_modules
 dist
+
+**/*.module.d.ts
+**/*.module.scss.d.ts

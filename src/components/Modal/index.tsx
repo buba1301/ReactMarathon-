@@ -1,5 +1,6 @@
 import React from 'react';
 import { capitalize } from 'lodash';
+import cn from 'classnames';
 
 import s from './Modal.module.scss';
 
@@ -18,6 +19,7 @@ interface IModalProps {
 
 const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
   const { name, stats, types, img, abilities, baseExperience } = pokemon;
+  const [generalType] = types;
 
   const statsList = Object.entries(stats).filter(([params]) => params !== 'hp' && params !== 'speed');
   const statsValues = Object.values(stats);
@@ -38,18 +40,18 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
         <img src={closeIcon} alt="closeIcon" />
       </div>
       <div className={s.modal}>
-        <div className={s.imageConteiner}>
+        <div className={cn(s.imageConteiner, s[generalType as keyof typeof s])}>
           <img className={s.pictureWrap} src={img} alt={name} />
           <div className={s.labelWrap}>
             {types.map((type) => (
-              <span key={type} className={s.label}>
+              <span key={type} className={cn(s.label, s[type as keyof typeof s])}>
                 {capitalize(type)}
               </span>
             ))}
           </div>
         </div>
 
-        <div className={s.infoWrap}>
+        <div className={cn(s.infoWrap, s[generalType as keyof typeof s])}>
           <div className={s.textWrap}>
             <div className={s.nameConteiner}>{capitalize(name)}</div>
             <div className={s.generationContainer}>Generation 1</div>
