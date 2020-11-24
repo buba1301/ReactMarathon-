@@ -38,8 +38,35 @@
   color: $dark;
 }
 
+@media (max-width: 1024px) {
+  .root {
+    height: 100%;
+  }
+
+  .contentWrap {
+    height: 1273px;
+    justify-content: space-between;
+    align-content: space-between;
+  }
+
+  .contentText {
+    width: 900px;
+    align-items: center;
+  }
+
+  .heading1 {
+    width: 900px;
+    text-align: center;
+  }
+
+  .heading2 {
+    text-align: center;
+  }
+}
+
 @media (max-width: 768px) {
   .contentWrap {
+    height: 100%;
     padding-top: 10px;
   }
 
@@ -60,6 +87,9 @@
 }
 
 @media (max-width: 500px) {
+  .contentWrap {
+    z-index: 1000;
+  }
   .contentText {
     width: 100%;
     height: 300px;

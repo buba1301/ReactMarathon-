@@ -7,9 +7,9 @@ import s from './Modal.module.scss';
 import closeIcon from './assets/closeIcon.png';
 
 import useLockBodyScroll from '../../hook/lockBodyScroll';
+import { IPokemonsApi } from '../../interface/pokemons';
 
-import { IPokemonsApi } from '../../pages/Pockedex';
-// TODO: добавить цвета на модалку:
+// TODO: как повернуть градиент в модалке:
 // TODO: поправить расположение имени на модалке
 interface IModalProps {
   showModal: boolean;

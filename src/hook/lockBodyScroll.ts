@@ -1,10 +1,13 @@
 /* eslint-disable no-return-assign */
 import { useEffect } from 'react';
 
-const useLockBodyScroll = (toggle: boolean): void => {
+const useLockBodyScroll = (toggle: boolean) => {
   useEffect(() => {
     document.body.style.overflow = toggle ? 'hidden' : 'visible';
-    return () => (document.body.style.overflow = 'visible');
+
+    return () => {
+      document.body.style.overflow = 'visible';
+    };
   }, [toggle]);
 };
 

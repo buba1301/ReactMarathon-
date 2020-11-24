@@ -5,26 +5,21 @@ import cn from 'classnames';
 import Heading from '../Heading/Heading';
 
 import s from './Card.module.scss';
+import { IPokemonsApi } from '../../interface/pokemons';
 
 interface ICard {
-  name: string;
-  stats: {
-    attack: number;
-    defense: number;
-  };
-  types: string[];
-  img: string;
-  id: number;
-  handleOpenModal: (event: React.MouseEvent<HTMLDivElement>) => void;
+  handleOpen: (event: React.MouseEvent<HTMLDivElement>) => void;
+  pokemon: IPokemonsApi;
 }
 
-const PokemonCard = ({ name, stats, types, img, id, handleOpenModal }: ICard) => {
+const PokemonCard = ({ pokemon, handleOpen }: ICard) => {
+  const { name, stats, types, img, id } = pokemon;
   const { attack, defense } = stats;
   const [generalType] = types;
   const pokemonId = id.toString();
 
   return (
-    <div className={s.root} onClick={handleOpenModal} id={pokemonId} role="presentation">
+    <div className={s.root} onClick={handleOpen} id={pokemonId} role="presentation">
       <div className={s.infoWrap} id={pokemonId}>
         <Heading className={s.titleName}>{capitalize(name)}</Heading>
         <div className={s.statWrap} id={pokemonId}>
@@ -42,7 +37,7 @@ const PokemonCard = ({ name, stats, types, img, id, handleOpenModal }: ICard) =>
           </div>
         </div>
         <div className={s.labelWrap} id={pokemonId}>
-          {types.map((type) => (
+          {types.map((type: string) => (
             <span key={type} className={cn(s.label, s[type as keyof typeof s])} id={pokemonId}>
               {type}
             </span>

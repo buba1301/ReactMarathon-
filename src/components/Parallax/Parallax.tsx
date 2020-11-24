@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import React, { MouseEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import s from './Parallax.module.scss';
 

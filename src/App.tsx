@@ -8,7 +8,6 @@ import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 const App = () => {
   const match = useRoutes(routes);
-
   return match ? (
     <>
       <Header />

@@ -15,41 +15,19 @@ import Modal from '../../components/Modal';
 import useData from '../../hook/getData';
 import useDebounce from '../../hook/useDebounce';
 
-export interface IPokemonsApi {
-  name: string;
-  id: number;
-  stats: {
-    hp: number;
-    attack: number;
-    defense: number;
-    specialAttack: number;
-    specialDefense: number;
-    speed: number;
-  };
-  types: string[];
-  img: string;
-  abilities: string[];
-  baseExperience: number;
-}
-interface IData extends IPokemonsApi {
-  total: number;
-  count: number;
-  offset: number;
-  limit: string;
-  pokemons: IPokemonsApi[];
-}
-
-interface IUsePokemon extends IData {
-  isLoading: boolean;
-  isError: boolean;
-  data: IData;
-}
+import { IPokemonsApi, IUsePokemon } from '../../interface/pokemons';
 
 const pagination: string[] = ['1', '2', '3', '4', '5'];
 
 const filterNames: string[] = ['Type', 'Attack', 'Experience'];
 
 const pokemonsOnPage = 9;
+
+interface IQuery {
+  name?: string;
+  limit?: string;
+  offset?: string;
+}
 
 const Pockedex = () => {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -64,8 +42,8 @@ const Pockedex = () => {
 
   const handleSeachChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
-    setQuery((s) => ({
-      ...s,
+    setQuery((state: IQuery) => ({
+      ...state,
       name: e.target.value,
       limit: pokemonsOnPage,
     }));
@@ -73,9 +51,9 @@ const Pockedex = () => {
 
   const handleChangePage = (e: React.ChangeEvent<HTMLDivElement>) => {
     setCurrentPage(e.target.id);
-    setQuery((s) => ({
-      ...s,
-      limit: pokemonsOnPage,
+    setQuery((state: IQuery) => ({
+      ...state,
+      // limit: pokemonsOnPage,
       offset: e.target.id,
     }));
   };
@@ -116,7 +94,7 @@ const Pockedex = () => {
           </div>
         </div>
         <div className={s.filtersConteiner}>
-          {filterNames.map((name) => (
+          {filterNames.map((name: string) => (
             <Dropdown key={name} name={name} />
           ))}
         </div>
@@ -124,18 +102,8 @@ const Pockedex = () => {
           <div className={s.cardConteiner}>
             {!isLoading &&
               data &&
-              data.pokemons.map(({ name, stats, types, img, id }: IPokemonsApi) => {
-                const props = {
-                  key: id,
-                  id,
-                  name,
-                  stats,
-                  types,
-                  img,
-                  handleOpenModal,
-                };
-
-                return <Card {...props} />;
+              data.pokemons.map((pokemon: IPokemonsApi) => {
+                return <Card key={pokemon.id} pokemon={pokemon} handleOpen={handleOpenModal} />;
               })}
           </div>
         </div>

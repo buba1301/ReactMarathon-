@@ -8,10 +8,10 @@ const useData = <T>(endPoint: string, query: object, deps: any[] = []) => {
   const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
-    const getData = async () => {
+    const getData = async (): Promise<void> => {
       setIsLoading(true);
       try {
-        const result = await req(endPoint, query);
+        const result = await req<T>(endPoint, query);
         setData(camalize(result));
       } catch (e) {
         setIsError(true);
