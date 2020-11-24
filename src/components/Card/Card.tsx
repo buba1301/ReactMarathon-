@@ -1,11 +1,11 @@
 import React from 'react';
-import { capitalize } from 'lodash';
 import cn from 'classnames';
 
 import Heading from '../Heading/Heading';
 
 import s from './Card.module.scss';
 import { IPokemonsApi } from '../../interface/pokemons';
+import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
 
 interface ICard {
   handleOpen: (event: React.MouseEvent<HTMLDivElement>) => void;
@@ -21,7 +21,7 @@ const PokemonCard = ({ pokemon, handleOpen }: ICard) => {
   return (
     <div className={s.root} onClick={handleOpen} id={pokemonId} role="presentation">
       <div className={s.infoWrap} id={pokemonId}>
-        <Heading className={s.titleName}>{capitalize(name)}</Heading>
+        <Heading className={s.titleName}>{toCapitalizeFirstLetter(name)}</Heading>
         <div className={s.statWrap} id={pokemonId}>
           <div className={s.statItem} id={pokemonId}>
             <div className={s.statValue} id={pokemonId}>
@@ -45,7 +45,7 @@ const PokemonCard = ({ pokemon, handleOpen }: ICard) => {
         </div>
       </div>
       <div className={cn(s.pictureWrap, s[generalType as keyof typeof s])} id={pokemonId}>
-        <img src={img} alt={capitalize(name)} id={pokemonId} />
+        <img src={img} alt={toCapitalizeFirstLetter(name)} id={pokemonId} />
       </div>
     </div>
   );

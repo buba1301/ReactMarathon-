@@ -8,6 +8,7 @@ import closeIcon from './assets/closeIcon.png';
 
 import useLockBodyScroll from '../../hook/lockBodyScroll';
 import { IPokemonsApi } from '../../interface/pokemons';
+import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
 
 // TODO: как повернуть градиент в модалке:
 // TODO: поправить расположение имени на модалке
@@ -27,7 +28,7 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
     return acc + value;
   }, 0);
 
-  const capitalizeAbilities = abilities.map((item) => capitalize(item));
+  const capitalizeAbilities = abilities.map((item) => toCapitalizeFirstLetter(item));
   const abilitiesToString = capitalizeAbilities.join(' - ');
 
   const getPercentForWidth = (value: number): number => (value / 1000) * 100;
@@ -53,7 +54,7 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
 
         <div className={cn(s.infoWrap, s[generalType as keyof typeof s])}>
           <div className={s.textWrap}>
-            <div className={s.nameConteiner}>{capitalize(name)}</div>
+            <div className={s.nameConteiner}>{toCapitalizeFirstLetter(name)}</div>
             <div className={s.generationContainer}>Generation 1</div>
             <div className={s.statsSum}>{statsSum}</div>
           </div>
@@ -83,7 +84,7 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
             {statsList.map(([params, value]) => (
               <div className={s.card} key={name}>
                 <div className={s.statValueCard}>{value}</div>
-                <div className={s.statText}>{capitalize(params)}</div>
+                <div className={s.statText}>{toCapitalizeFirstLetter(params)}</div>
               </div>
             ))}
           </div>

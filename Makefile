@@ -15,3 +15,6 @@ stylelint:
 
 pretty:
 	yarn pretty-quick
+
+test:
+	npx jest --watch
