@@ -1,18 +1,16 @@
 /* eslint-disable no-console */
-import React from 'react';
-import { navigate } from 'hookrouter';
-import Layout from '../../components/Layout/Layout';
-import Button from '../../components/Button/Index';
-import Parallax from '../../components/Parallax/Parallax';
-import Heading from '../../components/Heading/Heading';
-import Footer from '../../components/Footer/Footer';
-
-import { LinkEnum } from '../../routes';
-import s from './Home.module.scss';
+import React from "react";
+import { navigate } from "hookrouter";
+import Layout from "../../components/Layout/Layout";
+import Button from "../../components/Button/Index";
+import Parallax from "../../components/Parallax/Parallax";
+import Heading from "../../components/Heading/Heading";
+import { LinkEnum } from "../../routes";
+import s from "./Home.module.scss";
 
 const HomePage = () => {
   return (
-    <div className={s.root}>
+    <main className={s.root}>
       <Layout className={s.contentWrap}>
         <Parallax />
         <div className={s.contentText}>
@@ -20,15 +18,15 @@ const HomePage = () => {
             <b>Find</b> all your favorite <b>Pokemon</b>
           </Heading>
           <Heading className={s.heading2}>
-            You can know the type of Pokemon, its strengths, disadvantages and abilities
+            You can know the type of Pokemon, its strengths, disadvantages and
+            abilities
           </Heading>
           <Button onClick={() => navigate(LinkEnum.POKEDEX)} size="normal">
             See pokemons
           </Button>
         </div>
       </Layout>
-      <Footer />
-    </div>
+    </main>
   );
 };
 

@@ -1,12 +1,13 @@
-@import '../../variables';
-@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import "../../variables";
+@import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
 
 .footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  height: 52px;
+  justify-content: space-evenly;
+  flex: 0 0 70px;
+  background: $primary;
 }
 
 .wrap {

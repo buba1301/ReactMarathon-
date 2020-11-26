@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import s from './Dropdown.module.scss';
+import s from "./Dropdown.module.scss";
 
 interface DropDownProps {
   // onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -12,12 +12,12 @@ interface IFilters {
 }
 
 const filters: IFilters = {
-  Type: ['Fire', 'Normal', 'Electric', 'Water'],
-  Attack: ['< 50', '50-100', '100 - 150', '150 <'],
-  Experience: ['< 50', '50-100', '100 - 150', '150 <'],
+  Type: ["Fire", "Normal", "Electric", "Water"],
+  Attack: ["< 50", "50-100", "100 - 150", "150 <"],
+  Experience: ["< 50", "50-100", "100 - 150", "150 <"],
 };
 
-const Dropdown: React.FC<DropDownProps> = ({ name }) => {
+const Dropdown: React.FC<DropDownProps> = ({ name, handleChange }) => {
   return (
     <div className={s.dropdown}>
       <span className={s.label}>{name}</span>
@@ -25,7 +25,7 @@ const Dropdown: React.FC<DropDownProps> = ({ name }) => {
       <div id="myDropdown" className={s.dropdownContent}>
         {filters[name].map((filter) => (
           <div key={filter}>
-            <input type="checkbox" />
+            <input type="checkbox" name={filter} onChange={handleChange} />
             {filter}
           </div>
         ))}

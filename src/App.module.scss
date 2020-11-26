@@ -1,0 +1,8 @@
+@import "./variables";
+.root {
+  // background: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
