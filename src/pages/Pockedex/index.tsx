@@ -24,6 +24,7 @@ interface IQuery {
   name?: string;
   limit?: string;
   offset?: string;
+  types?: string;
 }
 
 const Pockedex = () => {
@@ -38,15 +39,17 @@ const Pockedex = () => {
   });
   const [showModal, setShowModal] = useState<boolean>(false);
   const [pokemon, setPokemon] = useState<IPokemonsApi | null | undefined>(null);
+  const [filter, setFilter] = useState<string>("");
+
   const debounceValue = useDebounce(searchValue, 500);
 
   const { data, isLoading, isError } = useData<IUsePokemon>(
     "getPokemons",
     query,
-    [debounceValue, currentPage]
+    [debounceValue, currentPage, filter]
   );
 
-  const handleSeachChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSeachChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setSearchValue(e.target.value);
     setQuery((state: IQuery) => ({
       ...state,
@@ -55,7 +58,7 @@ const Pockedex = () => {
     }));
   };
 
-  const handleChangePage = (e: React.ChangeEvent<HTMLDivElement>) => {
+  const handleChangePage = (e: React.ChangeEvent<HTMLDivElement>): void => {
     const currentPage = Number(e.target.id);
     setCurrentPage(currentPage);
     setQuery((state: IQuery) => ({
@@ -76,13 +79,25 @@ const Pockedex = () => {
     setShowModal(!showModal);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setShowModal(!showModal);
     setPokemon(null);
   };
 
-  const handleChangeFilter = (e) => {
-    // console.log(e.target);
+  const handleChangeFilter = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const filterName = e.target.name;
+
+    const setData = (value: string): void => {
+      setFilter(value);
+      setQuery((state: IQuery) => ({
+        ...state,
+        types: value.toLowerCase(),
+      }));
+    };
+
+    const isFilterChecked = filterName === filter;
+
+    isFilterChecked ? setData("") : setData(filterName);
   };
 
   if (isLoading) {
@@ -116,6 +131,7 @@ const Pockedex = () => {
               key={name}
               name={name}
               handleChange={handleChangeFilter}
+              filterName={filter}
             />
           ))}
         </div>

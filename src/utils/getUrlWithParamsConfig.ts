@@ -43,7 +43,7 @@ const getUrlWithParamsConfig = (
   url.query = {
     ...pathNameAndQuery.query,
   };
-
+  // console.log(url)
   return url;
 };
 

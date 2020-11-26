@@ -3,8 +3,9 @@ import React from "react";
 import s from "./Dropdown.module.scss";
 
 interface DropDownProps {
-  // onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   name: string;
+  filterName: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface IFilters {
@@ -17,18 +18,33 @@ const filters: IFilters = {
   Experience: ["< 50", "50-100", "100 - 150", "150 <"],
 };
 
-const Dropdown: React.FC<DropDownProps> = ({ name, handleChange }) => {
+const Dropdown: React.FC<DropDownProps> = ({
+  name,
+  handleChange,
+  filterName,
+}) => {
   return (
     <div className={s.dropdown}>
       <span className={s.label}>{name}</span>
 
       <div id="myDropdown" className={s.dropdownContent}>
-        {filters[name].map((filter) => (
-          <div key={filter}>
-            <input type="checkbox" name={filter} onChange={handleChange} />
-            {filter}
-          </div>
-        ))}
+        {filters[name].map((filter) => {
+          const disabled = filterName === "" ? false : filterName !== filter;
+          const checked = filterName === "" ? false : filterName === filter;
+
+          return (
+            <div key={filter}>
+              <input
+                type="checkbox"
+                name={filter}
+                onChange={handleChange}
+                disabled={disabled}
+                checked={checked}
+              />
+              {filter}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
