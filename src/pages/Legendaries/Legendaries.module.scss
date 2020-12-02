@@ -1,0 +1,124 @@
+@import "../../variables";
+
+.root {
+  display: grid;
+  grid-template-rows: minmax(auto, 1fr);
+  background: $dark;
+}
+
+.item1 {
+  display: grid;
+  grid-template-rows: 100px minmax(auto, 1fr) 200px;
+  grid-template-columns: minmax(375px, 1fr);
+  // background: grey;
+}
+
+.header {
+  height: 100px;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.headerContainer {
+  height: 100px;
+  width: 1072px;
+  border-bottom: 1px solid $white;
+  @include font(400, 400, 72px, 82px, $white);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(375px, 1fr));
+  grid-template-rows: minmax(480px, 1fr);
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.image {
+  height: 418px;
+  width: 373px;
+}
+
+.textContainer {
+  height: 418px;
+  width: 373px;
+  display: grid;
+  grid-template-rows: 84px auto auto;
+}
+
+.textHeader {
+  height: 84px;
+  @include font(400, 400, 72px, 82px, $white);
+}
+
+.text {
+  @include font(400, 400, 16px, 20px, $white);
+}
+
+.skillsWrap {
+  width: 375px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.skillBox {
+  background: salmon;
+  width: 185px;
+  height: 50px;
+}
+
+.cards {
+  // height: 200px;
+  display: grid;
+  grid-template-columns: minmax(auto, 150px) auto minmax(auto, 150px);
+}
+
+.errow {
+  background: cornsilk;
+}
+
+.cardsWrap {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(160px, 1fr));
+  grid-template-rows: minmax(188px, 1fr);
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.card {
+  width: 140px;
+  height: 160px;
+  border-radius: 20px;
+  background: yellow;
+}
+
+.item2 {
+  background: blue;
+}
+
+.item3 {
+  background: green;
+}
+
+@media (max-width: 1024px) {
+  .cardsWrap {
+    grid-template-columns: repeat(5, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .cardsWrap {
+    grid-template-columns: repeat(4, minmax(160px, 1fr));
+  }
+}
+
+@media (max-width: 500px) {
+  .cardsWrap {
+    grid-template-columns: repeat(2, minmax(160px, 1fr));
+  }
+}

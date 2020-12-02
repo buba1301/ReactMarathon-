@@ -10,6 +10,7 @@
   "author": "buba1301 <bmuza57@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@hapi/hapi": "^20.0.3",
     "@types/classnames": "^2.2.11",
     "@types/hookrouter": "^2.2.3",
     "@types/node": "^14.14.6",

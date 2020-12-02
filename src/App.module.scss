@@ -6,3 +6,9 @@
   justify-content: space-between;
   height: 100vh;
 }
+
+@media (max-width: 1024px) {
+  .root {
+    justify-content: flex-start;
+  }
+}
