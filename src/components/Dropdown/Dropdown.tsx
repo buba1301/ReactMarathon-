@@ -29,7 +29,7 @@ const Dropdown: React.FC<DropDownProps> = ({
 
       <div id="myDropdown" className={s.dropdownContent}>
         {filters[name].map((filter) => {
-          const disabled = filterName === "" ? false : filterName !== filter;
+          // const disabled = filterName === "" ? false : filterName !== filter;
           const checked = filterName === "" ? false : filterName === filter;
 
           return (
@@ -38,7 +38,7 @@ const Dropdown: React.FC<DropDownProps> = ({
                 type="checkbox"
                 name={filter}
                 onChange={handleChange}
-                disabled={disabled}
+                // disabled={disabled}
                 checked={checked}
               />
               {filter}

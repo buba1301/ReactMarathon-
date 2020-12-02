@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from "react";
@@ -47,6 +48,11 @@ const Pockedex = () => {
     "getPokemons",
     query,
     [debounceValue, currentPage, filter]
+  );
+
+  console.log(
+    "!!!",
+    data?.pokemons.map((i) => i.types)
   );
 
   const handleSeachChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

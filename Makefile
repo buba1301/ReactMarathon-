@@ -1,6 +1,9 @@
 dev:
 	yarn run build:dev
 
+build:
+	yarn run build:dev
+
 prod:
 	yarn run build:prod
 
@@ -18,3 +21,6 @@ pretty:
 
 test:
 	npx jest --watch
+
+serve:
+	node dist/server.js
