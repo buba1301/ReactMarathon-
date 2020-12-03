@@ -23,9 +23,13 @@ const filterNames: string[] = ["Type", "Attack", "Experience"];
 
 interface IQuery {
   name?: string;
-  limit?: string;
-  offset?: string;
+  limit?: number;
+  offset?: number;
   types?: string;
+}
+
+interface IFilters {
+  [key: string]: boolean;
 }
 
 const Pockedex = () => {
@@ -34,20 +38,26 @@ const Pockedex = () => {
 
   const [searchValue, setSearchValue] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [query, setQuery] = useState<object>({
+  const [query, setQuery] = useState<IQuery>({
     limit: pokemonsOnPage,
     offset: 0,
+    types: "",
   });
   const [showModal, setShowModal] = useState<boolean>(false);
   const [pokemon, setPokemon] = useState<IPokemonsApi | null | undefined>(null);
-  const [filter, setFilter] = useState<string>("");
+  const [filters, setFilters] = useState<IFilters>({
+    Fire: false,
+    Normal: false,
+    Electric: false,
+    Water: false,
+  });
 
   const debounceValue = useDebounce(searchValue, 500);
 
   const { data, isLoading, isError } = useData<IUsePokemon>(
     "getPokemons",
     query,
-    [debounceValue, currentPage, filter]
+    [debounceValue, currentPage, filters, query]
   );
 
   console.log(
@@ -93,17 +103,43 @@ const Pockedex = () => {
   const handleChangeFilter = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const filterName = e.target.name;
 
-    const setData = (value: string): void => {
-      setFilter(value);
+    const newFilterState = !filters[filterName];
+
+    setFilters((state: IFilters) => ({
+      ...state,
+      [filterName]: newFilterState,
+    }));
+
+    const queryTypesToArray = query.types?.split("|");
+
+    const isCurrentFilterInQuery = (
+      queryTypesToArray: string[] | undefined
+    ) => {
+      return queryTypesToArray?.findIndex(
+        (item) => item === filterName.toLowerCase()
+      );
+    };
+
+    const setFilterInQuery = (typesQuery: string | undefined): void => {
       setQuery((state: IQuery) => ({
         ...state,
-        types: value.toLowerCase(),
+        types: typesQuery,
       }));
     };
 
-    const isFilterChecked = filterName === filter;
+    if (isCurrentFilterInQuery(queryTypesToArray) === -1) {
+      const typesQuery = [filterName.toLowerCase(), ...queryTypesToArray].join(
+        "|"
+      );
 
-    isFilterChecked ? setData("") : setData(filterName);
+      setFilterInQuery(typesQuery);
+    } else {
+      const typesQuery = queryTypesToArray
+        ?.filter((i: string | undefined) => i !== filterName.toLowerCase())
+        .join("|");
+
+      setFilterInQuery(typesQuery);
+    }
   };
 
   if (isLoading) {
@@ -137,7 +173,7 @@ const Pockedex = () => {
               key={name}
               name={name}
               handleChange={handleChangeFilter}
-              filterName={filter}
+              filterState={filters}
             />
           ))}
         </div>

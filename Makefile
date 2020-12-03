@@ -1,9 +1,6 @@
 dev:
 	yarn run build:dev
 
-build:
-	yarn run build:dev
-
 prod:
 	yarn run build:prod
 

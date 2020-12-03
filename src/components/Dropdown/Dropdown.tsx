@@ -2,9 +2,12 @@ import React from "react";
 
 import s from "./Dropdown.module.scss";
 
+interface IFiltersState {
+  [key: string]: boolean;
+}
 interface DropDownProps {
   name: string;
-  filterName: string;
+  filterState: IFiltersState;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -21,7 +24,7 @@ const filters: IFilters = {
 const Dropdown: React.FC<DropDownProps> = ({
   name,
   handleChange,
-  filterName,
+  filterState,
 }) => {
   return (
     <div className={s.dropdown}>
@@ -30,7 +33,9 @@ const Dropdown: React.FC<DropDownProps> = ({
       <div id="myDropdown" className={s.dropdownContent}>
         {filters[name].map((filter) => {
           // const disabled = filterName === "" ? false : filterName !== filter;
-          const checked = filterName === "" ? false : filterName === filter;
+          // const checked = filterName === "" ? false : filterName === filter;
+
+          const checked = filterState[filter];
 
           return (
             <div key={filter}>
