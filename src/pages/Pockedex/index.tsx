@@ -16,10 +16,9 @@ import useDebounce from "../../hook/useDebounce";
 
 import { IPokemonsApi, IUsePokemon } from "../../interface/pokemons";
 import getPokemonsOnPage from "../../utils/windowWidth";
+import { filtersNames } from "../../utils/filterNames";
 
 const pagination: string[] = ["0", "1", "2", "3", "4"];
-
-const filterNames: string[] = ["Type", "Attack", "Experience"];
 
 interface IQuery {
   name?: string;
@@ -168,7 +167,7 @@ const Pockedex = () => {
           </div>
         </div>
         <div className={s.filtersConteiner}>
-          {filterNames.map((name: string) => (
+          {filtersNames.map((name: string) => (
             <Dropdown
               key={name}
               name={name}

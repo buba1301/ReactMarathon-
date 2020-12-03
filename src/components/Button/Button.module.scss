@@ -20,11 +20,11 @@
 
 .small {
   height: 21px;
-  width: 135px;
-  border-radius: 5px;
+  width: 66px;
+  border-radius: 10px;
   box-shadow: none;
-  padding: 0 33px 0;
-  @include font(normal, 400, 16px, 20px, $dark);
+  padding: 0 15px 0;
+  @include font(normal, 400, 13px, 15px, $dark);
 
   :hover,
   :focus {
