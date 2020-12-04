@@ -5,7 +5,8 @@ yarn.lock
 
 *.d.ts
 *.module.scss.d.ts
-/src/**/*.d.ts
+src/**/*.d.ts
+src/**/*.module.scss.d.ts
 
 /src/**/*.module.d.ts
 /src/**/*.module.scss.d.ts
