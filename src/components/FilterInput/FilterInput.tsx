@@ -1,16 +1,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+import { omit } from "lodash";
 import { useForm } from "react-hook-form";
 import s from "./FilterInput.module.scss";
 import Button from "../Button/Index";
 import { IQuery } from "../../pages/Pockedex";
-// import Line from "./assests/Line.png";
 
 interface IFormInput {
-  [key: string]: string | number;
+  [key: string]: string | number | string[];
 }
 interface IFolterInputProps {
   name: string;
+  query: IQuery;
   setQuery: React.Dispatch<React.SetStateAction<IQuery>>;
 }
 
@@ -22,19 +23,28 @@ const FilterInput: React.FC<IFolterInputProps> = ({
   const nameFrom = `${name.toLowerCase()}_from`;
   const nameTo = `${name.toLowerCase()}_to`;
 
-  const { register, handleSubmit, errors } = useForm<IFormInput>({
+  const { register, handleSubmit, reset, errors } = useForm<IFormInput>({
     defaultValues: {
-      [nameFrom]: query[nameFrom],
-      [nameTo]: query[nameTo],
+      [nameFrom]: query[nameFrom as keyof typeof query],
+      [nameTo]: query[nameTo as keyof typeof query],
     },
   });
 
   const onSubmit = (data: IFormInput) => {
-    // setFilterValue(data);
     setQuery((state) => ({
       ...state,
       ...data,
     }));
+  };
+
+  const handleResetClick = () => {
+    reset({
+      [nameFrom]: "",
+      [nameTo]: "",
+    });
+    setQuery((state) => {
+      return omit(state, [nameFrom, nameTo]);
+    });
   };
 
   return (
@@ -69,7 +79,7 @@ const FilterInput: React.FC<IFolterInputProps> = ({
           />
         </div>
         <div className={s.buttonWrap}>
-          <Button size="small" type="submit">
+          <Button size="small" type="submit" onClick={handleResetClick}>
             Reset
           </Button>
           <Button size="small" type="submit">
@@ -82,35 +92,3 @@ const FilterInput: React.FC<IFolterInputProps> = ({
 };
 
 export default FilterInput;
-// <img src={Line} alt="Line" />
-// <div className={s.inputWrap}>
-
-/*
-<div className={s.wrap}>
-        <div className={s.headerWrap}>
-          <div className={s.header}>From</div>
-          <div className={s.inputWrap}>
-            <input
-              name={`${name.toLowerCase()}_from`}
-              className={s.input}
-              value={filterValueFrom}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        <div className={s.headerWrap}>
-          <div className={s.header}>To</div>
-          <div className={s.inputWrap}>
-            <input
-              name={`${name.toLowerCase()}_to`}
-              className={s.input}
-              value={filterValueTo}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-      </div>
-      <div className={s.buttonWrap}>
-        <Button size="small">Apply</Button>
-      </div>
-*/
