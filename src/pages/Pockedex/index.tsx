@@ -31,13 +31,15 @@ const Pockedex = () => {
   const pokemonsOnPage = getPokemonsOnPage();
   const pageOffset = pokemonsOnPage;
 
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [query, setQuery] = useState<IQuery>({
+  const initialQueryState = {
     limit: pokemonsOnPage,
     offset: 0,
     types: [],
-  });
+  };
+
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [query, setQuery] = useState<IQuery>(initialQueryState);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [pokemon, setPokemon] = useState<IPokemonsApi | null | undefined>(null);
   const [filtersTypesList, setFiltersList] = useState<string[]>([]);
@@ -85,6 +87,11 @@ const Pockedex = () => {
     setPokemon(null);
   };
 
+  const handleResetFilters = () => {
+    setFiltersList([]);
+    setQuery(initialQueryState);
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -121,6 +128,9 @@ const Pockedex = () => {
               setFiltersList={setFiltersList}
             />
           ))}
+          <button type="button" onClick={handleResetFilters}>
+            Reset All FIlters
+          </button>
         </div>
         <div>
           <div className={s.cardConteiner}>

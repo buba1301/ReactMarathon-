@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-
+import { useForm } from "react-hook-form";
 import s from "./Dropdown.module.scss";
 
 import FilterInput from "../FilterInput/FilterInput";
 import { IQuery } from "../../pages/Pockedex";
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { filterByTypes } from "../../utils/filterNames";
+import toCapitalizeFirstLetter from "../../utils/toCapitalizeFirstLetter";
 
 interface DropDownProps {
   name: string;
@@ -13,6 +13,10 @@ interface DropDownProps {
   setQuery: React.Dispatch<React.SetStateAction<IQuery>>;
   filtersTypesList: string[];
   setFiltersList: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+interface IData {
+  [key: string]: boolean;
 }
 
 const Dropdown: React.FC<DropDownProps> = ({
@@ -24,35 +28,29 @@ const Dropdown: React.FC<DropDownProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const { register, handleSubmit } = useForm({
+    defaultValues: filtersTypesList.reduce((acc, item) => {
+      return { ...acc, [item]: true };
+    }, {}),
+  });
+
   const handleClick = () => {
-    if (isOpen) {
-      setIsOpen(!isOpen);
-      setQuery((state: IQuery) => ({
-        ...state,
-        types: filtersTypesList,
-      }));
-    } else {
-      setIsOpen(!isOpen);
-    }
+    setIsOpen(!isOpen);
   };
 
-  const handleChangeTypesFilter = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const filterName = e.target.name;
+  const handleChangeTypesFilter = (data: IData) => {
+    const activeFiltersList = Object.entries(data).filter(
+      ([, state]) => state === true
+    );
+    const activeFiltersNames = activeFiltersList.map(
+      ([filterName]) => filterName
+    );
 
-    const isCurrentFilterInQuery = () => {
-      return filtersTypesList?.findIndex(
-        (item: string) => item === filterName.toLowerCase()
-      );
-    };
-
-    const newFiltersLest =
-      isCurrentFilterInQuery() === -1
-        ? [...filtersTypesList, filterName]
-        : filtersTypesList.filter((item: string) => item !== filterName);
-
-    setFiltersList(newFiltersLest);
+    setFiltersList(activeFiltersNames);
+    setQuery((state: IQuery) => ({
+      ...state,
+      types: activeFiltersNames,
+    }));
   };
 
   return (
@@ -64,16 +62,25 @@ const Dropdown: React.FC<DropDownProps> = ({
       {isOpen && (
         <div id="myDropdown" className={s.dropdownContent}>
           {name === "Type" ? (
-            filterByTypes.map((filterName: string) => {
-              return (
-                <FilterCheckbox
-                  name={filterName}
-                  key={filterName}
-                  filtersList={filtersTypesList}
-                  handleChangeTypesFilter={handleChangeTypesFilter}
-                />
-              );
-            })
+            <form
+              className={s.form}
+              onSubmit={handleSubmit(handleChangeTypesFilter)}
+            >
+              {filterByTypes.map((filterName: string) => {
+                return (
+                  <div className={s.checkBoxContainer}>
+                    <input
+                      type="checkbox"
+                      name={filterName}
+                      placeholder={filterName}
+                      ref={register}
+                    />
+                    {toCapitalizeFirstLetter(filterName)}
+                  </div>
+                );
+              })}
+              <input type="submit" />
+            </form>
           ) : (
             <FilterInput name={name} query={query} setQuery={setQuery} />
           )}
