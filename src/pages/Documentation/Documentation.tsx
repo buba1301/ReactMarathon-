@@ -3,10 +3,10 @@ import FilterInput from "../../components/FilterInput/FilterInput";
 
 import s from "./Documentation.module.scss";
 
-const Documentation = () => {
+const Documentation = ({ setQuery }) => {
   return (
     <div className={s.root}>
-      <FilterInput />
+      <FilterInput name="Attack" setQuery={setQuery} />
     </div>
   );
 };

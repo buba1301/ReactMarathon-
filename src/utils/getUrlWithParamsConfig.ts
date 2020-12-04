@@ -1,6 +1,7 @@
 import { omit } from "lodash";
 
 import config from "../config";
+import { IQuery } from "../pages/Pockedex";
 
 type IAcc = {
   url: string;
@@ -9,7 +10,7 @@ type IAcc = {
 
 const getUrlWithParamsConfig = (
   endPointConfig: string,
-  query: object
+  query: IQuery
 ): object => {
   const url = {
     ...config.client.server,
@@ -20,6 +21,8 @@ const getUrlWithParamsConfig = (
       ...query,
     },
   };
+
+  const queryTypesToString = url.query.types?.join("|");
 
   const pathNameAndQuery = Object.keys(query).reduce(
     (acc: IAcc, key) => {
@@ -43,7 +46,9 @@ const getUrlWithParamsConfig = (
   url.query = {
     ...pathNameAndQuery.query,
   };
-  // console.log(url)
+
+  url.query.types = queryTypesToString;
+
   return url;
 };
 

@@ -1,59 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 
 import s from "./Dropdown.module.scss";
-import { filterByTypes } from "../../utils/filterNames";
-import toCapitalizeFirstLetter from "../../utils/toCapitalizeFirstLetter";
-import FilterInput from "../FilterInput/FilterInput";
 
-interface IFiltersState {
-  [key: string]: boolean;
-}
+import FilterInput from "../FilterInput/FilterInput";
+import { IQuery } from "../../pages/Pockedex";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import { filterByTypes } from "../../utils/filterNames";
+
 interface DropDownProps {
   name: string;
-  filterState: IFiltersState;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  query: IQuery;
+  setQuery: React.Dispatch<React.SetStateAction<IQuery>>;
+  filtersTypesList: string[];
+  setFiltersList: React.Dispatch<React.SetStateAction<string[]>>;
 }
-
-/* interface IFilters {
-  [key: string]: string[];
-}
-
-const filters: IFilters = {
-  Type: ["Fire", "Normal", "Electric", "Water"],
-  Attack: ["< 50", "50-100", "100 - 150", "150 <"],
-  Experience: ["< 50", "50-100", "100 - 150", "150 <"],
-}; */
 
 const Dropdown: React.FC<DropDownProps> = ({
   name,
-  handleChange,
-  filterState,
+  query,
+  setQuery,
+  filtersTypesList,
+  setFiltersList,
 }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleClick = () => {
+    if (isOpen) {
+      setIsOpen(!isOpen);
+      setQuery((state: IQuery) => ({
+        ...state,
+        types: filtersTypesList,
+      }));
+    } else {
+      setIsOpen(!isOpen);
+    }
+  };
+
+  const handleChangeTypesFilter = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const filterName = e.target.name;
+
+    const isCurrentFilterInQuery = () => {
+      return filtersTypesList?.findIndex(
+        (item: string) => item === filterName.toLowerCase()
+      );
+    };
+
+    const newFiltersLest =
+      isCurrentFilterInQuery() === -1
+        ? [...filtersTypesList, filterName]
+        : filtersTypesList.filter((item: string) => item !== filterName);
+
+    setFiltersList(newFiltersLest);
+  };
+
   return (
     <div className={s.dropdown}>
-      <span className={s.label}>{name}</span>
+      <button type="button" onClick={handleClick} className={s.label}>
+        {name}
+      </button>
 
-      <div id="myDropdown" className={s.dropdownContent}>
-        {name === "Type" ? (
-          filterByTypes.map((filter: string) => {
-            const checked = filterState[filter];
-
-            return (
-              <div key={filter} className={s.checkBoxContainer}>
-                <input
-                  type="checkbox"
-                  name={filter}
-                  onChange={handleChange}
-                  checked={checked}
+      {isOpen && (
+        <div id="myDropdown" className={s.dropdownContent}>
+          {name === "Type" ? (
+            filterByTypes.map((filterName: string) => {
+              return (
+                <FilterCheckbox
+                  name={filterName}
+                  key={filterName}
+                  filtersList={filtersTypesList}
+                  handleChangeTypesFilter={handleChangeTypesFilter}
                 />
-                {toCapitalizeFirstLetter(filter)}
-              </div>
-            );
-          })
-        ) : (
-          <FilterInput />
-        )}
-      </div>
+              );
+            })
+          ) : (
+            <FilterInput name={name} query={query} setQuery={setQuery} />
+          )}
+        </div>
+      )}
     </div>
   );
 };

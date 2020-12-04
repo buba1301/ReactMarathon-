@@ -1,5 +1,5 @@
 interface IFilters {
-  [key: string]: string[];
+  [key: string]: string[] | number[];
 }
 
 export const filterByTypes: string[] = [
@@ -25,11 +25,11 @@ export const filterByTypes: string[] = [
 
 const filters: IFilters = {
   Type: filterByTypes,
-  Attack: ["< 50", "50-100", "100 - 150", "150 <"],
-  Experience: ["< 50", "50-100", "100 - 150", "150 <"],
-  HealthPoint: ["< 50", "50-100", "100 - 150", "150 <"],
-  Defense: ["< 50", "50-100", "100 - 150", "150 <"],
-  Speed: ["< 50", "50-100", "100 - 150", "150 <"],
+  Attack: [0, 0],
+  Experience: [0, 0],
+  HealthPoint: [0, 0],
+  Defense: [0, 0],
+  Speed: [0, 0],
 };
 
 export const filtersNames: string[] = Object.keys(filters);

@@ -2,21 +2,30 @@
 
 .root {
   height: 105px;
-  width: 285px;
+  width: 286px;
   border-radius: 8px;
 
   background: $white;
 
-  display: grid;
-  grid-template-rows: 60px 55px;
-  // grid-template-columns: 130px 25px 130px;
+  // display: grid;
+  // grid-template-row: 60px 55px;
+  // grid-template-columns: 1fr 1fr;
+
+  // display: flex;
+  // flex-wrap: wrap;
 }
 
 .wrap {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  justify-items: center;
-  align-items: start;
+  // display: grid;
+  // grid-template-columns: repeat(2, auto);
+  // justify-items: center;
+  // align-items: start;
+  width: 286px;
+  height: 105px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .headerWrap {
@@ -28,22 +37,25 @@
   width: 142.5px;
 }
 
-.header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 142px;
-  padding-left: 25px;
+.headerFrom {
+  margin-right: 50px;
+  @include font(normal, normal, 16px, 20px, $dark);
+}
+
+.headerTo {
+  margin-right: 70px;
   @include font(normal, normal, 16px, 20px, $dark);
 }
 
 .inputWrap {
-  width: 285px;
-  height: 20px;
+  width: 142px;
+  height: 70px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  padding-left: 20px;
+  // padding-left: 20px;
+  // border-radius: 16px;
 }
 
 .input {
@@ -58,9 +70,10 @@
 
 .buttonWrap {
   width: 285px;
+  height: 35px;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-start;
-  align-items: center;
-  padding-right: 20px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  // padding-right: 20px;
 }

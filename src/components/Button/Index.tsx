@@ -1,20 +1,35 @@
-import React from 'react';
-import cn from 'classnames';
+/* eslint-disable react/button-has-type */
+import React from "react";
+import cn from "classnames";
 
-import s from './Button.module.scss';
+import s from "./Button.module.scss";
 
 interface ButtonProps {
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   block?: boolean;
   color?: string;
   size: string;
+  type: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, block = false, color = 'green', size }) => {
-  const classNames = cn(block, color, s[size as keyof typeof s], s[color as keyof typeof s], s.root);
+const Button: React.FC<ButtonProps> = ({
+  children,
+  type,
+  onClick,
+  block = false,
+  color = "green",
+  size,
+}) => {
+  const classNames = cn(
+    block,
+    color,
+    s[size as keyof typeof s],
+    s[color as keyof typeof s],
+    s.root
+  );
 
   return (
-    <button type="button" className={classNames} onClick={onClick}>
+    <button type={type} className={classNames} onClick={onClick}>
       {children}
     </button>
   );
