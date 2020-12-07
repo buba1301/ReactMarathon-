@@ -7,7 +7,7 @@ import Button from "../Button/Index";
 import { IQuery } from "../../pages/Pockedex";
 
 interface IFormInput {
-  [key: string]: string | number | string[];
+  [key: string]: string | number;
 }
 interface IFolterInputProps {
   name: string;

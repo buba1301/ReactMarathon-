@@ -1,14 +1,14 @@
-import React from 'react';
-import { navigate } from 'hookrouter';
+import React from "react";
+import { navigate } from "hookrouter";
 
-import { ReactComponent as TeamRocket } from './assets/teamRocket.svg';
+import { ReactComponent as TeamRocket } from "./assets/teamRocket.svg";
 
-import Button from '../Button/Index';
-import Layout from '../Layout/Layout';
-import Heading from '../Heading/Heading';
+import Button from "../Button/Index";
+import Layout from "../Layout/Layout";
+import Heading from "../Heading/Heading";
 
-import s from './NotFoundPage.module.scss';
-import { LinkEnum } from '../../routes';
+import s from "./NotFoundPage.module.scss";
+import { LinkEnum } from "../../routes";
 
 const NotFoundPage = () => {
   return (
@@ -19,7 +19,12 @@ const NotFoundPage = () => {
         <Heading className={s.text}>
           <span>The rocket team</span> has won this time.
         </Heading>
-        <Button onClick={() => navigate(LinkEnum.HOME)} size="normal" color="yellow">
+        <Button
+          type="button"
+          onClick={() => navigate(LinkEnum.HOME)}
+          size="normal"
+          color="yellow"
+        >
           Return
         </Button>
       </Layout>

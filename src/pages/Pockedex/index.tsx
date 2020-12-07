@@ -20,11 +20,15 @@ import { filtersNames } from "../../utils/filterNames";
 
 const pagination: string[] = ["0", "1", "2", "3", "4"];
 
-export interface IQuery {
+/* export interface IQuery {
   name?: string;
   limit?: number;
   offset?: number;
   types?: string;
+} */
+
+export interface IQuery {
+  [key: string]: string | number;
 }
 
 const Pockedex = () => {

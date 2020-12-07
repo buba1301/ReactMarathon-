@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import camalize from 'camelize';
-import req from '../utils/request';
+import { useEffect, useState } from "react";
+import camalize from "camelize";
+import req from "../utils/request";
+import { IQuery } from "../pages/Pockedex";
 
-const useData = <T>(endPoint: string, query: object, deps: any[] = []) => {
+const useData = <T>(endPoint: string, query: IQuery, deps: any[] = []) => {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);

@@ -28,10 +28,10 @@ const getUrlWithParamsConfig = (
     (acc: IAcc, key: string) => {
       const subStr = `{${key}}`;
 
-      const queryValueForUrl = query[key as keyof typeof query];
+      const queryValueForUrl = query[key];
 
       if (acc.url.indexOf(subStr) !== -1) {
-        const newUrl = acc.url.replace(subStr, queryValueForUrl);
+        const newUrl = acc.url.replace(subStr, queryValueForUrl as string);
         const newQuery = omit(query, key);
         return { ...acc, url: newUrl, query: newQuery };
       }

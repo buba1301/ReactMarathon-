@@ -71,7 +71,7 @@ const Dropdown: React.FC<DropDownProps> = ({
             >
               {filterByTypes.map((filterName: string) => {
                 return (
-                  <div className={s.checkBoxContainer}>
+                  <div className={s.checkBoxContainer} key={filterName}>
                     <input
                       type="checkbox"
                       name={filterName}
