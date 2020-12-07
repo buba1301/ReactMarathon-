@@ -28,10 +28,12 @@ const Dropdown: React.FC<DropDownProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const values = filtersTypesList.reduce((acc, item) => {
+    return { ...acc, [item]: true };
+  }, {});
+
   const { register, handleSubmit } = useForm({
-    defaultValues: filtersTypesList.reduce((acc, item) => {
-      return { ...acc, [item]: true };
-    }, {}),
+    defaultValues: values,
   });
 
   const handleClick = () => {
@@ -42,15 +44,16 @@ const Dropdown: React.FC<DropDownProps> = ({
     const activeFiltersList = Object.entries(data).filter(
       ([, state]) => state === true
     );
+
     const activeFiltersNames = activeFiltersList.map(
       ([filterName]) => filterName
     );
-
-    setFiltersList(activeFiltersNames);
     setQuery((state: IQuery) => ({
       ...state,
-      types: activeFiltersNames,
+      types: activeFiltersNames.join("|"),
     }));
+    setFiltersList(activeFiltersNames);
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -82,7 +85,13 @@ const Dropdown: React.FC<DropDownProps> = ({
               <input type="submit" />
             </form>
           ) : (
-            <FilterInput name={name} query={query} setQuery={setQuery} />
+            <FilterInput
+              name={name}
+              query={query}
+              setQuery={setQuery}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
           )}
         </div>
       )}

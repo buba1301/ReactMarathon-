@@ -3,5 +3,7 @@ node_modules
 dist
 yarn.lock
 
-/src/**/*.module.d.ts
-/src/**/*.module.scss.d.ts
+*.module.d.ts
+*.module.scss.d.ts
+/src/**/**/*.module.d.ts
+/src/**/**/*.module.scss.d.ts

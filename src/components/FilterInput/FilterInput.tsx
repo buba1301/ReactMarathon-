@@ -11,14 +11,18 @@ interface IFormInput {
 }
 interface IFolterInputProps {
   name: string;
+  isOpen: boolean;
   query: IQuery;
   setQuery: React.Dispatch<React.SetStateAction<IQuery>>;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const FilterInput: React.FC<IFolterInputProps> = ({
   name,
   query,
   setQuery,
+  isOpen,
+  setIsOpen,
 }) => {
   const nameFrom = `${name.toLowerCase()}_from`;
   const nameTo = `${name.toLowerCase()}_to`;
@@ -35,6 +39,7 @@ const FilterInput: React.FC<IFolterInputProps> = ({
       ...state,
       ...data,
     }));
+    setIsOpen(!isOpen);
   };
 
   const handleResetClick = () => {
@@ -45,6 +50,7 @@ const FilterInput: React.FC<IFolterInputProps> = ({
     setQuery((state) => {
       return omit(state, [nameFrom, nameTo]);
     });
+    setIsOpen(!isOpen);
   };
 
   return (

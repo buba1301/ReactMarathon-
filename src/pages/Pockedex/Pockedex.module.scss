@@ -28,8 +28,10 @@
 }
 
 .heading {
+  width: 65%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   text-align: center;
   @include font(normal, normal, 35px, 41px, $dark);
   padding-bottom: 20px;
@@ -73,6 +75,7 @@
   grid-gap: 1rem;
   justify-items: center;
   align-items: center;
+  width: 90%;
 }
 
 .loader {

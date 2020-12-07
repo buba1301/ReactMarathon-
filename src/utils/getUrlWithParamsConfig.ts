@@ -1,11 +1,10 @@
 import { omit } from "lodash";
-
 import config from "../config";
 import { IQuery } from "../pages/Pockedex";
 
 type IAcc = {
   url: string;
-  query: object;
+  query: IQuery;
 };
 
 const getUrlWithParamsConfig = (
@@ -22,11 +21,13 @@ const getUrlWithParamsConfig = (
     },
   };
 
-  const queryTypesToString = url.query.types?.join("|");
+  // const typesList = url.query.types;
+  // const queryTypesToString = typesList.join("|");
 
   const pathNameAndQuery = Object.keys(query).reduce(
-    (acc: IAcc, key) => {
+    (acc: IAcc, key: string) => {
       const subStr = `{${key}}`;
+
       const queryValueForUrl = query[key as keyof typeof query];
 
       if (acc.url.indexOf(subStr) !== -1) {
@@ -45,9 +46,10 @@ const getUrlWithParamsConfig = (
   url.pathname = pathNameAndQuery.url;
   url.query = {
     ...pathNameAndQuery.query,
+    // types: queryTypesToString
   };
 
-  url.query.types = queryTypesToString;
+  // url.query.types = queryTypesToString;
 
   return url;
 };

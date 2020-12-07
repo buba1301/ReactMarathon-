@@ -24,7 +24,7 @@ export interface IQuery {
   name?: string;
   limit?: number;
   offset?: number;
-  types?: string[];
+  types?: string;
 }
 
 const Pockedex = () => {
@@ -34,7 +34,6 @@ const Pockedex = () => {
   const initialQueryState = {
     limit: pokemonsOnPage,
     offset: 0,
-    types: [],
   };
 
   const [searchValue, setSearchValue] = useState<string>("");
@@ -49,7 +48,7 @@ const Pockedex = () => {
   const { data, isLoading, isError } = useData<IUsePokemon>(
     "getPokemons",
     query,
-    [debounceValue, currentPage, query]
+    [debounceValue, currentPage, filtersTypesList]
   );
 
   const handleSeachChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -92,9 +91,9 @@ const Pockedex = () => {
     setQuery(initialQueryState);
   };
 
-  if (isLoading) {
+  /* if (isLoading) {
     return <Spinner />;
-  }
+  } */
 
   if (isError) {
     return <div>Uppsss...</div>;
@@ -105,8 +104,8 @@ const Pockedex = () => {
       <Layout className={s.containerWrap}>
         <div className={s.containerInput}>
           <Heading className={s.heading}>
-            {!isLoading && data && data.total} Pokemons for you to choose your
-            favorite
+            {!isLoading && data && <p>{data.total}</p>}
+            <p>Pokemons for you to choose your favorite</p>
           </Heading>
           <div className={s.inputWrap}>
             <input
@@ -117,36 +116,40 @@ const Pockedex = () => {
             />
           </div>
         </div>
-        <div className={s.filtersConteiner}>
-          {filtersNames.map((name: string) => (
-            <Dropdown
-              key={name}
-              name={name}
-              query={query}
-              setQuery={setQuery}
-              filtersTypesList={filtersTypesList}
-              setFiltersList={setFiltersList}
-            />
-          ))}
-          <button type="button" onClick={handleResetFilters}>
-            Reset All FIlters
-          </button>
-        </div>
-        <div>
-          <div className={s.cardConteiner}>
-            {!isLoading &&
-              data &&
-              data.pokemons.map((pokemon: IPokemonsApi) => {
-                return (
-                  <Card
-                    key={pokemon.id}
-                    pokemon={pokemon}
-                    handleOpen={handleOpenModal}
-                  />
-                );
-              })}
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <div>
+            <div className={s.filtersConteiner}>
+              {filtersNames.map((name: string) => (
+                <Dropdown
+                  key={name}
+                  name={name}
+                  query={query}
+                  setQuery={setQuery}
+                  filtersTypesList={filtersTypesList}
+                  setFiltersList={setFiltersList}
+                />
+              ))}
+              <button type="button" onClick={handleResetFilters}>
+                Reset All FIlters
+              </button>
+            </div>
+            <div className={s.cardConteiner}>
+              {!isLoading &&
+                data &&
+                data.pokemons.map((pokemon: IPokemonsApi) => {
+                  return (
+                    <Card
+                      key={pokemon.id}
+                      pokemon={pokemon}
+                      handleOpen={handleOpenModal}
+                    />
+                  );
+                })}
+            </div>
           </div>
-        </div>
+        )}
         <div className={s.loader}>
           {pagination.map((id) => (
             <input

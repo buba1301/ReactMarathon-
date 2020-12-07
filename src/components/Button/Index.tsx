@@ -9,7 +9,7 @@ interface ButtonProps {
   block?: boolean;
   color?: string;
   size: string;
-  type: string;
+  type: "button" | "submit" | "reset" | undefined;
 }
 
 const Button: React.FC<ButtonProps> = ({
