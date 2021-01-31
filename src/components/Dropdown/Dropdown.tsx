@@ -51,7 +51,7 @@ const Dropdown: React.FC<DropDownProps> = ({
   }); */
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const target = e.target as typeof e.target;
+    const target = e.target as typeof e.target & { name: string };
 
     setDropMenuDirections(
       DropDownContent[target.name as keyof typeof DropDownContent]
