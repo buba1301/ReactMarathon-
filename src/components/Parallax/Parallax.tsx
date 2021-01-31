@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 
 import s from "./Parallax.module.scss";
 
-import SmallPokeBallPng from "./assets/pokeballsmall.png";
-import CloudPng from "./assets/cloudsmall.png";
-import PokeBallPng from "./assets/pokeballbig.png";
-import CloudBigPng from "./assets/cloudbig.png";
-import PikachuPng from "./assets/pikachu.png";
+import SmallPokeBallPng from "./assets/Pokeballsmall.png";
+import CloudPng from "./assets/Cloudsmall.png";
+import PokeBallPng from "./assets/Pokeballbig.png";
+import CloudBigPng from "./assets/Cloudbig.png";
+import PikachuPng from "./assets/Pikachu.png";
 
 const Parallax = () => {
   const [screenX, setScreenX] = useState(0);
