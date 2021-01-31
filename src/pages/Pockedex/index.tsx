@@ -20,13 +20,6 @@ import { filtersNames } from "../../utils/filterNames";
 
 const pagination: string[] = ["0", "1", "2", "3", "4"];
 
-/* export interface IQuery {
-  name?: string;
-  limit?: number;
-  offset?: number;
-  types?: string;
-} */
-
 export interface IQuery {
   [key: string]: string | number;
 }
@@ -90,14 +83,10 @@ const Pockedex = () => {
     setPokemon(null);
   };
 
-  const handleResetFilters = () => {
+  /* const handleResetFilters = () => {
     setFiltersList([]);
     setQuery(initialQueryState);
-  };
-
-  /* if (isLoading) {
-    return <Spinner />;
-  } */
+  }; */
 
   if (isError) {
     return <div>Uppsss...</div>;
@@ -123,7 +112,7 @@ const Pockedex = () => {
         {isLoading ? (
           <Spinner />
         ) : (
-          <div>
+          <>
             <div className={s.filtersConteiner}>
               {filtersNames.map((name: string) => (
                 <Dropdown
@@ -135,24 +124,23 @@ const Pockedex = () => {
                   setFiltersList={setFiltersList}
                 />
               ))}
-              <button type="button" onClick={handleResetFilters}>
-                Reset All FIlters
-              </button>
             </div>
-            <div className={s.cardConteiner}>
-              {!isLoading &&
-                data &&
-                data.pokemons.map((pokemon: IPokemonsApi) => {
-                  return (
-                    <Card
-                      key={pokemon.id}
-                      pokemon={pokemon}
-                      handleOpen={handleOpenModal}
-                    />
-                  );
-                })}
+            <div>
+              <div className={s.cardConteiner}>
+                {!isLoading &&
+                  data &&
+                  data.pokemons.map((pokemon: IPokemonsApi) => {
+                    return (
+                      <Card
+                        key={pokemon.id}
+                        pokemon={pokemon}
+                        handleOpen={handleOpenModal}
+                      />
+                    );
+                  })}
+              </div>
             </div>
-          </div>
+          </>
         )}
         <div className={s.loader}>
           {pagination.map((id) => (

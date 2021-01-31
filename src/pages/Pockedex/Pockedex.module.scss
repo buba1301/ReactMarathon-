@@ -3,8 +3,6 @@
 
 .root {
   background: $white;
-  // display: grid;
-  // grid-template-columns: auto;
   padding-top: 10px;
 }
 
@@ -23,7 +21,7 @@
   display: flex;
   flex: wrap;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -35,6 +33,10 @@
   text-align: center;
   @include font(normal, normal, 35px, 41px, $dark);
   padding-bottom: 20px;
+
+  p {
+    margin: 0;
+  }
 }
 
 .inputWrap {
@@ -63,10 +65,12 @@
 // TODO: сделать окно с фильтрами для телефона
 .filtersConteiner {
   height: 30px;
-  width: 533px;
+  // width: 533px;
+  width: 95%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 
 .cardConteiner {
@@ -75,7 +79,7 @@
   grid-gap: 1rem;
   justify-items: center;
   align-items: center;
-  width: 90%;
+  // width: 90%;
 }
 
 .loader {
@@ -96,15 +100,26 @@
   .containerWrap {
     grid-template-rows: repeat(4, auto);
   }
+
+  .heading {
+    width: 80%;
+  }
+
   .filtersConteiner {
-    width: 322px;
+    // width: 322px;
+    width: 95%;
     margin-left: 20px;
   }
 }
 
 @media (max-width: 768px) {
+  .heading {
+    width: 100%;
+  }
+
   .filtersConteiner {
-    width: 322px;
+    // width: 322px;
+    width: 95%;
     margin-left: 20px;
   }
 }

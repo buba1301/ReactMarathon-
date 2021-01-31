@@ -9,6 +9,7 @@ interface ButtonProps {
   block?: boolean;
   color?: string;
   size: string;
+  name?: string;
   type: "button" | "submit" | "reset" | undefined;
 }
 
@@ -19,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   block = false,
   color = "green",
   size,
+  name,
 }) => {
   const classNames = cn(
     block,
@@ -29,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
   );
 
   return (
-    <button type={type} className={classNames} onClick={onClick}>
+    <button type={type} className={classNames} name={name} onClick={onClick}>
       {children}
     </button>
   );
