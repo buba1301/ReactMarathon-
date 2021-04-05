@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
 
 * {
   box-sizing: border-box;
@@ -8,8 +8,13 @@ html,
 body {
   margin: 0;
   padding: 0;
+  // height: 100vh;
 }
 
 body {
   font-family: Karla, Arial, sans-serif;
 }
+
+/* #root {
+  height: 100%;
+} */

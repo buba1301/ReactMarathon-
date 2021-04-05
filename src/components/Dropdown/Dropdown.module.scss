@@ -1,4 +1,4 @@
-@import '../../variables';
+@import "../../variables";
 
 .dropdown {
   position: relative;
@@ -59,6 +59,7 @@
   .dropdown {
     width: 50px;
   }
+
   .dropdownContent {
     width: 50px;
   }

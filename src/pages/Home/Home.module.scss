@@ -1,18 +1,22 @@
-@import '../../variables';
+@import "../../variables";
 
 .root {
   height: 100vh;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
+  display: grid;
+  grid-template-rows: auto;
+  // column-gap: 1fr;
+  // align-items: stretch;
 }
 
 .contentWrap {
+  flex: 2 0 auto;
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: center;
-  padding-top: 67px;
-  padding-bottom: 55px;
+  padding-top: 55px;
 }
 
 .contentText {
@@ -22,6 +26,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+
+  /* & > * + * {
+    margin-top: var(--flow-space, 1em);
+  } https://ishadeed.com/article/thinking-like-a-front-end-developer */
 }
 
 .heading1 {
@@ -40,18 +48,19 @@
 
 @media (max-width: 1024px) {
   .root {
-    height: 100%;
+    height: 100vh;
   }
-
   .contentWrap {
-    height: 1273px;
-    justify-content: space-between;
-    align-content: space-between;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-content: space-around;
   }
 
   .contentText {
     width: 900px;
+    // height: 520px;
     align-items: center;
+    //padding-top: 100px;
   }
 
   .heading1 {
@@ -66,14 +75,15 @@
 
 @media (max-width: 768px) {
   .contentWrap {
-    height: 100%;
-    padding-top: 10px;
+    //margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .contentText {
     height: 400px;
     width: 750px;
     align-items: center;
+    padding-top: 10px;
   }
 
   .heading1 {
@@ -87,12 +97,22 @@
 }
 
 @media (max-width: 500px) {
+  .root {
+    z-index: 1000;
+    height: 100vh;
+    padding-top: 10px;
+  }
+
   .contentWrap {
+    height: 90%;
+    height: 550px;
     z-index: 1000;
   }
+
   .contentText {
     width: 100%;
-    height: 300px;
+    height: 320px;
+    justify-content: space-evenly;
     align-items: center;
   }
 
@@ -103,6 +123,17 @@
 
   .heading2 {
     width: 100%;
-    @include font(normal, normal, 24px, 28px, $dark);
+    @include font(normal, normal, 20px, 24px, $dark);
+  }
+}
+
+@media (max-width: 375px) {
+  .root {
+    height: 100vh;
+  }
+  .contentWrap {
+    height: 100vh;
+    z-index: 1000;
+    justify-content: space-between;
   }
 }

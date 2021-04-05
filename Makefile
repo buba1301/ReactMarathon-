@@ -18,3 +18,6 @@ pretty:
 
 test:
 	npx jest --watch
+
+serve:
+	node dist/server.js

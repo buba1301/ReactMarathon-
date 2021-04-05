@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
-@import '../../variables';
+@import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
+@import "../../variables";
 
 .root {
-  height: 93px;
   width: 100%;
+  flex: 0 0 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;

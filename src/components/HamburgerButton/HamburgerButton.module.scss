@@ -1,4 +1,4 @@
-@import '../../variables';
+@import "../../variables";
 
 .root {
   width: 31px;
@@ -50,5 +50,5 @@
   margin-bottom: 2.5px;
   border-radius: 2px;
   background-color: $dark;
-  // transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
