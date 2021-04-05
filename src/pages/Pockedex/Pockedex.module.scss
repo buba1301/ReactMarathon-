@@ -1,0 +1,39 @@
+@import '../../variables';
+
+.root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  background: $white;
+}
+
+.container {
+  height: 738px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filtersConteiner {
+  height: 30px;
+  border: solid;
+}
+
+.cardConteiner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.card {
+  height: 136px;
+  width: 352px;
+  border: solid;
+  background: red;
+  margin: 5px;
+}

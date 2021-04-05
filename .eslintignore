@@ -2,3 +2,5 @@ node_modules
 dist
 public
 .eslintrc.js
+webpack.config.js
+*.css

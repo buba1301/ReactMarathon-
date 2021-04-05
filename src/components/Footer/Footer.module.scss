@@ -1,0 +1,35 @@
+@import '../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  height: 50px;
+
+  // background-color: red;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1125px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.makeLove {
+  @include font(normal, normal, 18px, 21px, $dark);
+  width: 112px;
+  height: 21px;
+}
+
+.ourTeam {
+  text-decoration: none;
+  @include font(normal, normal, 18px, 21px, $dark);
+  width: 91px;
+  height: 21px;
+  cursor: pointer;
+}

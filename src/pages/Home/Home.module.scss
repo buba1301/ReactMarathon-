@@ -1,0 +1,43 @@
+@import '../../variables';
+
+.root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+
+.contentWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentText {
+  width: 516px;
+  height: 557px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.contentParallax {
+  display: block;
+  // justify-content: space-between;
+  // align-items: flex-start;
+}
+
+.heading1 {
+  @include font(normal, normal, 72px, 84px, $dark);
+}
+
+.heading2 {
+  @include font(normal, normal, 32px, 37px, $dark);
+}
+
+.pockeButton {
+  color: $dark;
+}
