@@ -18,12 +18,6 @@ interface IMenu {
   component: () => JSX.Element;
 }
 
-export const host = 'http://zar.hosthot.ru/api/v1/pokemons?limit=9';
-
-export const getQueryParams = (key: string, value: string): string => {
-  return [key, value].join('=');
-};
-
 export const GENERAL_MENU: IMenu[] = [
   {
     link: LinkEnum.HOME,

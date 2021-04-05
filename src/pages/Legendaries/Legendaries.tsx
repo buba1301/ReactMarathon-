@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Legendaries = () => {
-  return <div>Hello!</div>;
-};
+// import s from './Legendaries.module.scss';
+
+const Legendaries = () => <div>Hello!</div>;
 
 export default Legendaries;

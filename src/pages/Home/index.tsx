@@ -10,7 +10,7 @@ import Footer from '../../components/Footer/Footer';
 import { LinkEnum } from '../../routes';
 import s from './Home.module.scss';
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   return (
     <div className={s.root}>
       <Layout className={s.contentWrap}>

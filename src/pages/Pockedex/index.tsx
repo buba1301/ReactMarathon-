@@ -1,6 +1,7 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable camelcase */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import cn from 'classnames';
 
 import s from './Pockedex.module.scss';
 
@@ -9,49 +10,36 @@ import Card from '../../components/Card/Card';
 import Heading from '../../components/Heading/Heading';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import Footer from '../../components/Footer/Footer';
+import Spinner from '../../components/Spinner';
+import Modal from '../../components/Modal';
 
-import { host, getQueryParams } from '../../routes';
+import useData from '../../hook/getData';
 
-type Type =
-  | 'stile'
-  | 'dark'
-  | 'rock'
-  | 'grass'
-  | 'bug'
-  | 'fire'
-  | 'fighting'
-  | 'dragon'
-  | 'water'
-  | 'ice'
-  | 'normal'
-  | 'flying'
-  | 'gosth'
-  | 'poison'
-  | 'psychic'
-  | 'fairy'
-  | 'ghost'
-  | 'ground'
-  | 'electric';
-interface IPokemonsApi {
-  name_clean: string;
+export interface IPokemonsApi {
+  name: string;
   id: number;
   stats: {
+    hp: number;
     attack: number;
     defense: number;
+    specialAttack: number;
+    specialDefense: number;
+    speed: number;
   };
-  types: Type[];
+  types: string[];
   img: string;
+  abilities: string[];
+  baseExperience: number;
+}
+interface IData extends IPokemonsApi {
+  total: number;
+  count: number;
+  offset: number;
+  limit: string;
+  pokemons: IPokemonsApi[];
 }
 
-type IData = {
-  total?: number;
-  count?: number;
-  offset?: number;
-  limit?: string;
-  pokemons?: IPokemonsApi[];
-};
-
-interface IUsePokemon {
+interface IUsePokemon extends IData {
   isLoading: boolean;
   isError: boolean;
   data: IData;
@@ -61,50 +49,51 @@ const pagination: string[] = ['1', '2', '3', '4', '5'];
 
 const filterNames: string[] = ['Type', 'Attack', 'Experience'];
 
-const usePokemons = (currentPage: string): IUsePokemon => {
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const getPokemons = async () => {
-      setIsLoading(true);
-      try {
-        const offset = getQueryParams('offset', currentPage);
-        const url = [host, offset].join('&');
-        const response = await fetch(url);
-        const result = await response.json();
-
-        setData(result);
-      } catch (e) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getPokemons();
-  }, [currentPage]);
-
-  return {
-    data,
-    isLoading,
-    isError,
-  };
-};
+const pokemonsOnPage = 9;
 
 const Pockedex = () => {
-  const [currentPage, setCurrentPage] = useState('1');
+  const [searchValue, setSearchValue] = useState<string>('');
+  const [query, setQuery] = useState<object>({ limit: pokemonsOnPage });
+  const [currentPage, setCurrentPage] = useState<string>('1');
+  const [showModal, setShowModal] = useState<string>('close');
+  const [pokemon, setPokemon] = useState<IPokemonsApi | null | undefined>(null);
 
-  const { data, isLoading, isError } = usePokemons(currentPage);
+  const { data, isLoading, isError } = useData<IUsePokemon>('getPokemons', query, [searchValue, currentPage]);
 
-  const { total, pokemons } = data;
-
-  const handleClick = ({ target: { id } }: React.ChangeEvent) => {
-    setCurrentPage(id);
+  const handleSeachChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    setQuery((s) => ({
+      ...s,
+      name: e.target.value,
+      limit: pokemonsOnPage,
+    }));
   };
 
+  const handleChangePage = (e: React.ChangeEvent<HTMLDivElement>) => {
+    setCurrentPage(e.target.id);
+    setQuery((s) => ({
+      ...s,
+      limit: pokemonsOnPage,
+      offset: e.target.id,
+    }));
+  };
+
+  const handleOpenModal = (e: React.MouseEvent<HTMLDivElement>): void => {
+    const currentPokemon = data && data.pokemons.find((pokemon: IPokemonsApi): boolean => pokemon.id === +e.target.id);
+
+    setPokemon(currentPokemon);
+    setShowModal('open');
+  };
+
+  const handleCloseModal = () => {
+    setShowModal('close');
+    setPokemon(null);
+  };
+
+  const classNamesOverlay = cn(s.overlay, s[showModal as keyof typeof s]);
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (isError) {
@@ -116,10 +105,10 @@ const Pockedex = () => {
       <Layout className={s.containerWrap}>
         <div className={s.containerInput}>
           <Heading className={s.heading}>
-            {total} <b>Pokemons</b> for you to choose your favorite
+            {data && data.total} <b>Pokemons</b> for you to choose your favorite
           </Heading>
           <div className={s.inputWrap}>
-            <input type="search" placeholder="Encuentra tu pokémon..." />
+            <input type="text" value={searchValue} placeholder="Encuentra tu pokémon..." onChange={handleSeachChange} />
           </div>
         </div>
         <div className={s.filtersConteiner}>
@@ -129,14 +118,16 @@ const Pockedex = () => {
         </div>
         <div>
           <div className={s.cardConteiner}>
-            {pokemons &&
-              pokemons.map(({ name_clean, stats, types, img, id }: IPokemonsApi) => {
+            {data &&
+              data.pokemons.map(({ name, stats, types, img, id }: IPokemonsApi) => {
                 const props = {
                   key: id,
-                  name: name_clean,
+                  id,
+                  name,
                   stats,
                   types,
                   img,
+                  handleOpenModal,
                 };
 
                 return <Card {...props} />;
@@ -145,11 +136,16 @@ const Pockedex = () => {
         </div>
         <div className={s.loader}>
           {pagination.map((id) => (
-            <input key={id} id={id} type="radio" checked={currentPage === id} onChange={handleClick} />
+            <input key={id} id={id} type="radio" checked={currentPage === id} onChange={handleChangePage} />
           ))}
         </div>
       </Layout>
+
       <Footer />
+
+      {pokemon && <Modal pokemon={pokemon} handleCloseModal={handleCloseModal} showModal={showModal} />}
+
+      <div className={classNamesOverlay} onClick={handleCloseModal} role="presentation" />
     </div>
   );
 };
