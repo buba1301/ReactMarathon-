@@ -1,38 +1,23 @@
 @import '../../variables';
 
 .root {
-  height: 100vh;
-  // display: grid;
-  // grid-template-rows: auto 1fr auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow-y: auto;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
 
 .contentWrap {
-  height: 100%;
-  display: flex;
-  flex: wrap;
-  flex: 0 1 auto;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 500px auto;
+  padding-top: 67px;
+  padding-bottom: 67px;
 }
 
 .contentText {
-  width: 516px;
   height: 557px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-}
-
-.contentParallax {
-  //display: block;
-  // justify-content: space-between;
-  // align-items: flex-start;
 }
 
 .heading1 {

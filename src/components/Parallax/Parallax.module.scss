@@ -1,8 +1,10 @@
 .root {
-  width: 793px;
-  height: 557px;
+  //width: 793px;
+  //height: 557px;
   position: relative;
-  margin-right: -124px;
+  margin-right: -115px;
+  overflow: hidden;
+  // overflow-y: hidden;
 }
 
 .smallPokeBall {
@@ -26,11 +28,11 @@
 .pokeBall {
   position: absolute;
   left: 73%;
-  bottom: 45%;
+  bottom: 30%;
 }
 
 .pikachu {
   position: absolute;
-  top: 5%;
-  right: 24%;
+  top: -2%;
+  right: 28%;
 }

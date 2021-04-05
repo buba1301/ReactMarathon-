@@ -1,58 +1,154 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import s from './Pockedex.module.scss';
 
-import Header from '../../components/Header/Header';
 import Layout from '../../components/Layout/Layout';
-import Footer from '../../components/Footer/Footer';
 import Card from '../../components/Card/Card';
 import Heading from '../../components/Heading/Heading';
+import Dropdown from '../../components/Dropdown/Dropdown';
+import Footer from '../../components/Footer/Footer';
 
-import pokemonsApi from './pokemons';
+import { host, getQueryParams } from '../../routes';
 
-const pagination: string[] = ['1', '2'];
+type Type =
+  | 'stile'
+  | 'dark'
+  | 'rock'
+  | 'grass'
+  | 'bug'
+  | 'fire'
+  | 'fighting'
+  | 'dragon'
+  | 'water'
+  | 'ice'
+  | 'normal'
+  | 'flying'
+  | 'gosth'
+  | 'poison'
+  | 'psychic'
+  | 'fairy'
+  | 'ghost'
+  | 'ground'
+  | 'electric';
+interface IPokemonsApi {
+  name_clean: string;
+  id: number;
+  stats: {
+    attack: number;
+    defense: number;
+  };
+  types: Type[];
+  img: string;
+}
 
-const pockemonLists = {
-  '1': pokemonsApi.slice(0, 9),
-  '2': pokemonsApi.slice(9, 18),
+type IData = {
+  total?: number;
+  count?: number;
+  offset?: number;
+  limit?: string;
+  pokemons?: IPokemonsApi[];
+};
+
+interface IUsePokemon {
+  isLoading: boolean;
+  isError: boolean;
+  data: IData;
+}
+
+const pagination: string[] = ['1', '2', '3', '4', '5'];
+
+const filterNames: string[] = ['Type', 'Attack', 'Experience'];
+
+const usePokemons = (currentPage: string): IUsePokemon => {
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const getPokemons = async () => {
+      setIsLoading(true);
+      try {
+        const offset = getQueryParams('offset', currentPage);
+        const url = [host, offset].join('&');
+        const response = await fetch(url);
+        const result = await response.json();
+
+        setData(result);
+      } catch (e) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getPokemons();
+  }, [currentPage]);
+
+  return {
+    data,
+    isLoading,
+    isError,
+  };
 };
 
 const Pockedex = () => {
   const [currentPage, setCurrentPage] = useState('1');
-  const [pokemonList, setPockemonList] = useState(pockemonLists['1']);
 
-  const handleClick = ({ target: { id } }) => {
+  const { data, isLoading, isError } = usePokemons(currentPage);
+
+  const { total, pokemons } = data;
+
+  const handleClick = ({ target: { id } }: React.ChangeEvent) => {
     setCurrentPage(id);
-    setPockemonList(pockemonLists[id]);
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Uppsss...</div>;
+  }
 
   return (
     <div className={s.root}>
-      <Header />
-      <div className={s.containerWrap}>
-        <Layout className={s.containerInput}>
+      <Layout className={s.containerWrap}>
+        <div className={s.containerInput}>
           <Heading className={s.heading}>
-            800 <b>Pokemons</b> for you to choose your favorite
+            {total} <b>Pokemons</b> for you to choose your favorite
           </Heading>
           <div className={s.inputWrap}>
-            <input placeholder="Encuentra tu pokémon..." />
+            <input type="search" placeholder="Encuentra tu pokémon..." />
           </div>
-          <div className={s.filtersConteiner}>Here will be filters</div>
-        </Layout>
-        <Layout className={s.containerCards}>
+        </div>
+        <div className={s.filtersConteiner}>
+          {filterNames.map((name) => (
+            <Dropdown key={name} name={name} />
+          ))}
+        </div>
+        <div>
           <div className={s.cardConteiner}>
-            {pokemonList.map(({ name_clean, stats: { attack, defense }, types, img, id }) => (
-              <Card key={id} name={name_clean} attack={attack} defense={defense} types={types} img={img} />
-            ))}
+            {pokemons &&
+              pokemons.map(({ name_clean, stats, types, img, id }: IPokemonsApi) => {
+                const props = {
+                  key: id,
+                  name: name_clean,
+                  stats,
+                  types,
+                  img,
+                };
+
+                return <Card {...props} />;
+              })}
           </div>
-        </Layout>
+        </div>
         <div className={s.loader}>
           {pagination.map((id) => (
             <input key={id} id={id} type="radio" checked={currentPage === id} onChange={handleClick} />
           ))}
         </div>
-      </div>
+      </Layout>
       <Footer />
     </div>
   );

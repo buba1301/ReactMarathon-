@@ -6,8 +6,9 @@
   border-radius: 8px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 45px;
+  margin-bottom: 35px;
   cursor: pointer;
+  z-index: 0;
   transition: all ease-in-out 0.15s;
 
   &:hover {

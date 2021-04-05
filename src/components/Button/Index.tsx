@@ -11,7 +11,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ children, onClick, block = false, color = 'green', size }) => {
-  const classNames = cn(block, color, s[size], s[color], s.root);
+  const classNames = cn(block, color, s[size as keyof typeof s], s[color as keyof typeof s], s.root);
 
   return (
     <button type="button" className={classNames} onClick={onClick}>
@@ -21,5 +21,3 @@ const Button: React.FC<ButtonProps> = ({ children, onClick, block = false, color
 };
 
 export default Button;
-
-// className={cn(s.root, {[s.yellow]:yellow})}
