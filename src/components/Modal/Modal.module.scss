@@ -1,14 +1,13 @@
 @import '../../variables';
-
+//TODO: модалка для мобилы
+//TODO: позиционирование окна и крестика
 .closeButton {
   width: 32px;
   height: 32px;
-
   z-index: 1010;
   position: absolute;
-  top: 22%;
-  left: 72%;
-
+  top: 35%;
+  left: 73%;
   cursor: pointer;
 }
 
@@ -21,36 +20,14 @@
   border-radius: 16px;
   overflow: hidden;
 
-  // position: relative;
   z-index: 1010;
   position: absolute;
-  top: 50%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-
+  top: 55%;
+  left: 30%;
+  transform: translate(-30%, -30%);
   margin-left: 100px;
   cursor: pointer;
   transition: all ease-in-out 0.15s;
-}
-
-.open {
-  display: block;
-}
-
-.close {
-  display: none;
-}
-
-.overlay {
-  z-index: 1000px;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  background: rgba(0, 0, 0, 0.6);
 }
 
 .imageConteiner {
@@ -58,7 +35,7 @@
   width: 364px;
   height: 372px;
   z-index: 0;
-  background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
+  // background: linear-gradient(270deg, #b33327 0.15%, #d93e30 100%);
   box-shadow: 4px 4px 8px rgba(1, 28, 64, 0.2);
 }
 
@@ -115,8 +92,6 @@
 
   display: grid;
   grid-template-rows: 96px 80px 90px 90px;
-
-  background: linear-gradient(180deg, #732119 42.19%, #d93e30 100%);
 }
 
 .textWrap {
@@ -283,4 +258,59 @@
 
 .statText {
   @include font(normal, 400, 12px, 14px, $dark);
+}
+
+.overlay {
+  z-index: 1000px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.stile,
+.dark,
+.rock {
+  background: map-get($backgroundType, dark);
+}
+
+.grass,
+.bug {
+  background: map-get($backgroundType, grass);
+}
+
+.fire,
+.fighting,
+.dragon {
+  background: map-get($backgroundType, fire);
+}
+
+.water,
+.ice {
+  background: map-get($backgroundType, water);
+}
+
+.normal,
+.flying,
+.gosth {
+  background: map-get($backgroundType, flying);
+}
+
+.poison,
+.psychic,
+.fairy,
+.ghost {
+  background: map-get($backgroundType, poison);
+}
+
+.ground {
+  background: map-get($backgroundType, ground);
+}
+
+.electric {
+  background: map-get($backgroundType, electric);
 }

@@ -1,11 +1,15 @@
+@import '../../variables';
+
 .root {
-  width: 351px;
-  height: 136px;
+  width: 336px;
+  height: 146px;
+  max-height: 146px;
   box-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
   background: #f6f7f9;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
+  margin-left: 15px;
   margin-bottom: 35px;
   cursor: pointer;
   z-index: 0;
@@ -22,7 +26,7 @@
   z-index: 1;
   width: 150px;
   top: 6px;
-  left: 25px;
+  left: 12px;
 }
 
 .titleName {
@@ -111,42 +115,48 @@
 .stile,
 .dark,
 .rock {
-  background: linear-gradient(270deg, #646363 0.15%, #a1a1a1 100%);
+  background: map-get($backgroundType, dark);
 }
 
 .grass,
 .bug {
-  background: linear-gradient(270deg, #7bbb3f 0.15%, #70a83b 100%);
+  background: map-get($backgroundType, grass);
 }
 
 .fire,
 .fighting,
 .dragon {
-  background: linear-gradient(270deg, #943b27 0.15%, #f76545 100%);
+  background: map-get($backgroundType, fire);
 }
 
 .water,
 .ice {
-  background: linear-gradient(270deg, #507ca5 0.15%, #76aadb 100%);
+  background: map-get($backgroundType, water);
 }
 
 .normal,
 .flying,
 .gosth {
-  background: linear-gradient(270deg, #6795c0 0.15%, #76aadb 100%);
+  background: map-get($backgroundType, flying);
 }
 
 .poison,
 .psychic,
 .fairy,
 .ghost {
-  background: linear-gradient(270deg, #b28cbe 0.15%, #a974bc 100%);
+  background: map-get($backgroundType, poison);
 }
 
 .ground {
-  background: linear-gradient(270deg, #807165 0.15%, #9b897b 100%);
+  background: map-get($backgroundType, ground);
 }
 
 .electric {
-  background: linear-gradient(270deg, #caa138 0.15%, #f7c545 100%);
+  background: map-get($backgroundType, electric);
+}
+
+@media (max-width: 375px) {
+  .root {
+    margin-left: 20px;
+  }
 }

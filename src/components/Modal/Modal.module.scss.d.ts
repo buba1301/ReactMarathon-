@@ -2,29 +2,46 @@
 // Please do not change this file!
 interface CssExports {
   'abilities': string;
+  'bug': string;
   'card': string;
   'cardBoxSquare': string;
   'cardLabel': string;
   'cardTitle': string;
   'cardValue': string;
-  'close': string;
   'closeButton': string;
+  'dark': string;
+  'dragon': string;
+  'electric': string;
   'experience': string;
+  'fairy': string;
+  'fighting': string;
+  'fire': string;
+  'flying': string;
   'generationContainer': string;
+  'ghost': string;
+  'gosth': string;
+  'grass': string;
+  'ground': string;
   'hp': string;
+  'ice': string;
   'imageConteiner': string;
   'infoWrap': string;
   'label': string;
   'labelWrap': string;
   'modal': string;
   'nameConteiner': string;
-  'open': string;
+  'normal': string;
   'overlay': string;
   'pictureWrap': string;
+  'poison': string;
+  'psychic': string;
+  'rock': string;
   'statText': string;
   'statValueCard': string;
   'statsSum': string;
+  'stile': string;
   'textWrap': string;
+  'water': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

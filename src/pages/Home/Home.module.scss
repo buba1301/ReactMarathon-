@@ -1,20 +1,23 @@
 @import '../../variables';
 
 .root {
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
 
 .contentWrap {
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 500px auto;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
   padding-top: 67px;
-  padding-bottom: 67px;
+  padding-bottom: 55px;
 }
 
 .contentText {
-  height: 557px;
+  height: 520px;
+  width: 520px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,13 +25,84 @@
 }
 
 .heading1 {
+  width: 515px;
   @include font(normal, normal, 72px, 84px, $dark);
 }
 
 .heading2 {
+  width: 515px;
   @include font(normal, normal, 32px, 37px, $dark);
 }
 
 .pockeButton {
   color: $dark;
+}
+
+@media (max-width: 1024px) {
+  .root {
+    height: 100%;
+  }
+
+  .contentWrap {
+    height: 1273px;
+    justify-content: space-between;
+    align-content: space-between;
+  }
+
+  .contentText {
+    width: 900px;
+    align-items: center;
+  }
+
+  .heading1 {
+    width: 900px;
+    text-align: center;
+  }
+
+  .heading2 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentWrap {
+    height: 100%;
+    padding-top: 10px;
+  }
+
+  .contentText {
+    height: 400px;
+    width: 750px;
+    align-items: center;
+  }
+
+  .heading1 {
+    width: 650px;
+    text-align: center;
+  }
+
+  .heading2 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .contentWrap {
+    z-index: 1000;
+  }
+  .contentText {
+    width: 100%;
+    height: 300px;
+    align-items: center;
+  }
+
+  .heading1 {
+    width: 100%;
+    @include font(normal, normal, 42px, 49px, $dark);
+  }
+
+  .heading2 {
+    width: 100%;
+    @include font(normal, normal, 24px, 28px, $dark);
+  }
 }

@@ -1,30 +1,37 @@
-import React from 'react';
-import { A } from 'hookrouter';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
 
-import { GENERAL_MENU } from '../../routes';
+import HamburgerButton from '../HamburgerButton/Index';
 
 import s from './Header.module.scss';
+import SideMenu from '../SideMenu';
+import GeneralMenu from '../GeneralMenu';
 
 const Header = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isPhoneWidth, setisPhoneWidth] = useState(false);
+
+  useEffect(() => {
+    setisPhoneWidth(window.matchMedia('(max-width: 500px)').matches);
+  }, [isPhoneWidth]);
+
+  const handleClick = () => {
+    setMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <header className={s.root}>
-      <div className={s.wrap}>
+    <>
+      <header className={s.root}>
         <div className={s.logo}>
           <PokemonLogoSvg />
         </div>
 
         <div className={s.nav}>
-          {GENERAL_MENU.map(({ link, title }) => {
-            return (
-              <A key={title} href={link} className={s.link}>
-                {title}
-              </A>
-            );
-          })}
+          {isPhoneWidth ? <HamburgerButton isMenuOpen={isMenuOpen} handleClick={handleClick} /> : <GeneralMenu />}
         </div>
-      </div>
-    </header>
+      </header>
+      {isMenuOpen && <SideMenu isMenuOpen={isMenuOpen} handleClick={handleClick} isPhoneWidth={isPhoneWidth} />}
+    </>
   );
 };
 

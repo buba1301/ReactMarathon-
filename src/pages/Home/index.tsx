@@ -14,6 +14,7 @@ const HomePage = () => {
   return (
     <div className={s.root}>
       <Layout className={s.contentWrap}>
+        <Parallax />
         <div className={s.contentText}>
           <Heading className={s.heading1}>
             <b>Find</b> all your favorite <b>Pokemon</b>
@@ -25,7 +26,6 @@ const HomePage = () => {
             See pokemons
           </Button>
         </div>
-        <Parallax />
       </Layout>
       <Footer />
     </div>

@@ -1,13 +1,19 @@
 @import '../../variables';
+@import '../../breakpoints';
 
 .root {
   background: $white;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto;
 }
 
 .containerWrap {
   display: grid;
-  grid-template-rows: 183px 55px 500px 50px;
-  grid-template-columns: auto;
+  grid-template-rows: repeat(5, auto);
+  grid-template-columns: minmax(375px, 1fr);
+  grid-gap: 1rem;
+  justify-items: stretch;
 }
 
 .containerInput {
@@ -15,27 +21,30 @@
   padding-top: 10px;
   padding-bottom: 10px;
   display: flex;
+  flex: wrap;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .heading {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
   @include font(normal, normal, 35px, 41px, $dark);
   padding-bottom: 20px;
 }
 
 .inputWrap {
-  height: 53px;
-  width: 1088px;
+  width: 95%;
   border-radius: 40px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 
   input {
     height: 53px;
-    width: 1088px;
+    width: 95%;
     border-radius: 40px;
     outline: 0;
     background: #f2f2f2;
@@ -49,20 +58,21 @@
     color: rgba(33, 33, 33, 0.8);
   }
 }
-
+// TODO: сделать окно с фильтрами для телефона
 .filtersConteiner {
   height: 30px;
   width: 533px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-left: 100px;
 }
 
 .cardConteiner {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
 }
 
 .loader {
@@ -79,22 +89,30 @@
   }
 }
 
-.overlay {
-  z-index: 1000px;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  background: rgba(0, 0, 0, 0.6);
+@media (max-width: 768px) {
+  .filtersConteiner {
+    width: 322px;
+    margin-left: 20px;
+  }
 }
 
-.open {
-  display: block;
-}
+@media (max-width: 500px) {
+  .heading {
+    width: 316px;
+  }
 
-.close {
-  display: none;
+  .inputWrap input {
+    height: 31px;
+  }
+
+  .filtersConteiner {
+    width: 300px;
+    margin-left: 25px;
+    justify-content: space-between;
+
+    :nth-child(3),
+    :nth-child(2) {
+      display: none;
+    }
+  }
 }

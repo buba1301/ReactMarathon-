@@ -10,5 +10,11 @@ start:
 lint:
 	npx eslint ./src
 
+stylelint:
+	npx stylelint "**/*.scss"
+
 pretty:
 	yarn pretty-quick
+
+test:
+	npx jest --watch

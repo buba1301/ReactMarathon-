@@ -6,16 +6,21 @@ import s from './Modal.module.scss';
 
 import closeIcon from './assets/closeIcon.png';
 
-import { IPokemonsApi } from '../../pages/Pockedex';
+import useLockBodyScroll from '../../hook/lockBodyScroll';
+import { IPokemonsApi } from '../../interface/pokemons';
+import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
 
+// TODO: как повернуть градиент в модалке:
+// TODO: поправить расположение имени на модалке
 interface IModalProps {
-  showModal: string;
+  showModal: boolean;
   handleCloseModal: (event: React.MouseEvent<HTMLDivElement>) => void;
   pokemon: IPokemonsApi;
 }
 
 const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
   const { name, stats, types, img, abilities, baseExperience } = pokemon;
+  const [generalType] = types;
 
   const statsList = Object.entries(stats).filter(([params]) => params !== 'hp' && params !== 'speed');
   const statsValues = Object.values(stats);
@@ -23,35 +28,33 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
     return acc + value;
   }, 0);
 
-  const capitalizeAbilities = abilities.map((item) => capitalize(item));
+  const capitalizeAbilities = abilities.map((item) => toCapitalizeFirstLetter(item));
   const abilitiesToString = capitalizeAbilities.join(' - ');
 
   const getPercentForWidth = (value: number): number => (value / 1000) * 100;
 
-  const classNamesCloseIcone = cn(s.closeButton, s[showModal as keyof typeof s]);
-
-  const classNamesModal = cn(s.modal, s[showModal as keyof typeof s]);
+  useLockBodyScroll(showModal);
 
   return (
     <>
-      <div className={classNamesCloseIcone} onClick={handleCloseModal} role="presentation">
+      <div className={s.closeButton} onClick={handleCloseModal} role="presentation">
         <img src={closeIcon} alt="closeIcon" />
       </div>
-      <div className={classNamesModal}>
-        <div className={s.imageConteiner}>
+      <div className={s.modal}>
+        <div className={cn(s.imageConteiner, s[generalType as keyof typeof s])}>
           <img className={s.pictureWrap} src={img} alt={name} />
           <div className={s.labelWrap}>
             {types.map((type) => (
-              <span key={type} className={s.label}>
+              <span key={type} className={cn(s.label, s[type as keyof typeof s])}>
                 {capitalize(type)}
               </span>
             ))}
           </div>
         </div>
 
-        <div className={s.infoWrap}>
+        <div className={cn(s.infoWrap, s[generalType as keyof typeof s])}>
           <div className={s.textWrap}>
-            <div className={s.nameConteiner}>{capitalize(name)}</div>
+            <div className={s.nameConteiner}>{toCapitalizeFirstLetter(name)}</div>
             <div className={s.generationContainer}>Generation 1</div>
             <div className={s.statsSum}>{statsSum}</div>
           </div>
@@ -81,12 +84,13 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
             {statsList.map(([params, value]) => (
               <div className={s.card} key={name}>
                 <div className={s.statValueCard}>{value}</div>
-                <div className={s.statText}>{capitalize(params)}</div>
+                <div className={s.statText}>{toCapitalizeFirstLetter(params)}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
+      <div className={s.overlay} onClick={handleCloseModal} role="presentation" />
     </>
   );
 };
