@@ -1,35 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { A } from 'hookrouter';
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
-import s from './Header.module.scss';
 
-interface IMenu {
-  id: number;
-  link: string;
-  name: string;
-}
-const navItems: IMenu[] = [
-  {
-    id: 1,
-    link: '/',
-    name: 'Home',
-  },
-  {
-    id: 2,
-    link: '/pockedex',
-    name: 'Pockedex',
-  },
-  {
-    id: 3,
-    link: '/legendaries',
-    name: 'Legendaries',
-  },
-  {
-    id: 4,
-    link: '/documentation',
-    name: 'Documentation',
-  },
-];
+import { GENERAL_MENU } from '../../routes';
+
+import s from './Header.module.scss';
 
 const Header = () => {
   return (
@@ -40,11 +15,11 @@ const Header = () => {
         </div>
 
         <div className={s.nav}>
-          {navItems.map(({ id, link, name }) => {
+          {GENERAL_MENU.map(({ link, title }) => {
             return (
-              <Link key={id} to={`${link}`} className={s.link}>
-                {name}
-              </Link>
+              <A key={title} href={link} className={s.link}>
+                {title}
+              </A>
             );
           })}
         </div>

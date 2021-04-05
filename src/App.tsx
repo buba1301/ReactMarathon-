@@ -1,26 +1,12 @@
 import React from 'react';
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import HomePage from './pages/Home';
-import Pockedex from './pages/Pockedex';
+import { useRoutes } from 'hookrouter';
+import { routes } from './routes';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 const App = () => {
-  return (
-    <Router>
-      <Route
-        render={() => (
-          <>
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/home" component={HomePage} />
-              <Route path="/pockedex" component={Pockedex} />
-            </Switch>
-          </>
-        )}
-      />
-    </Router>
-  );
+  const match = useRoutes(routes);
+
+  return match || <NotFoundPage />;
 };
 
 export default App;

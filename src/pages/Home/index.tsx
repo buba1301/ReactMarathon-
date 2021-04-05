@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { navigate } from 'hookrouter';
 import Header from '../../components/Header/Header';
 import Layout from '../../components/Layout/Layout';
 import Footer from '../../components/Footer/Footer';
@@ -10,7 +10,7 @@ import Heading from '../../components/Heading/Heading';
 
 import s from './Home.module.scss';
 
-const HomePage: React.FC<RouteComponentProps> = ({ history: { push } }) => {
+const HomePage: React.FC = () => {
   return (
     <div className={s.root}>
       <Header />
@@ -22,13 +22,11 @@ const HomePage: React.FC<RouteComponentProps> = ({ history: { push } }) => {
           <Heading className={s.heading2}>
             You can know the type of Pokemon, its strengths, disadvantages and abilities
           </Heading>
-          <Button onClick={() => push('/pockedex')} size="normal">
+          <Button onClick={() => navigate('/pockedex')} size="normal">
             See pokemons
           </Button>
         </div>
-        <div className={s.contentParallax}>
-          <Parallax />
-        </div>
+        <Parallax />
       </Layout>
       <Footer />
     </div>

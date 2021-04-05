@@ -9,18 +9,73 @@
   background: $white;
 }
 
-.container {
+.containerWrap {
   height: 738px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+
+.inputWrap {
+  height: 53px;
+  width: 1088px;
+  border-radius: 40px;
+  background: #f2f2f2;
+  box-shadow: 4px 4px 16px rgba(1, 28, 64, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  input {
+    height: 53px;
+    width: 1088px;
+    border-radius: 40px;
+    outline: 0;
+
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+
+    color: rgba(33, 33, 33, 0.8);
+  }
+}
+
+.containerInput {
+  height: 200px;
+  // padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.heading {
+  @include font(normal, normal, 35px, 41px, $dark);
+  padding-bottom: 20px;
 }
 
 .filtersConteiner {
   height: 30px;
   border: solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.containerCards {
+  height: 500px;
+  // padding-top: 30px;
+  // padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .cardConteiner {
@@ -36,4 +91,15 @@
   border: solid;
   background: red;
   margin: 5px;
+}
+
+.loader {
+  height: 8px;
+  width: 100px;
+  padding-top: 30px;
+  border-radius: 0px;
+
+  input {
+    cursor: pointer;
+  }
 }

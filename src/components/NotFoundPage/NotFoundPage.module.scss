@@ -1,0 +1,36 @@
+@import '../../variables';
+
+.root {
+  height: 100%;
+  background: $danger;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  height: 833px;
+}
+
+.team {
+  position: absolute;
+  z-index: 1;
+  left: 27%;
+  top: 7%;
+}
+
+.errorContainer {
+  opacity: 0.5;
+  @include font(normal, 700, 700px, 650px, $dark);
+}
+
+.text {
+  margin-bottom: 30px;
+  @include font(normal, 700, 48px, 56px, $dark);
+
+  span {
+    color: $white;
+  }
+}
