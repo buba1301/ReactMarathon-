@@ -1,34 +1,37 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true
+    env: {
+        browser: true,
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/eslint-recommended"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
+    extends: ['airbnb', 'airbnb/hooks', 'react-app', 'prettier', 'prettier/react'],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true,
         },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
+        ecmaVersion: 12,
+        sourceType: 'module',
     },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "settings": {
-        "react": {
-            "version": "16.6"
-        }
+    plugins: ['prettier', 'prettier', 'react', '@typescript-eslint'],
+    rules: {
+        '@typescript-eslint/no-unused-vars': 'error',
+        'no-console': 'error',
+        'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.ts', '.js'] }],
+        'import/extensions': [
+            'error',
+            'ignorePackages',
+            {
+                ts: 'never',
+                tsx: 'never',
+                js: 'never',
+                jsx: 'never',
+            },
+        ],
     },
-    "rules": {
-    }
+    settings: {
+        'import/resolver': {
+            webpack: {
+                config: 'webpack.config.js',
+            },
+        },
+    },
 };

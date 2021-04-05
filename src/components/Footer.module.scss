@@ -1,0 +1,41 @@
+@mixin footer($width, $left, $top) {
+  position: absolute;
+  height: 22px;
+  width: $width;
+  left: $left;
+  top: $top;
+  border-radius: 0px;
+}
+
+.footerText {
+  $width: 1125px;
+  $left: 128px;
+  $top: 969px;
+  @include footer($width, $left, $top);
+}
+
+.makeWithLove {
+  $width: 112px;
+  $left: 0px;
+  $top: 1px;
+  @include footer($width, $left, $top);
+}
+
+.ourTeam {
+  $width: 91px;
+  $left: 1034px;
+  $top: 1px;
+  @include footer($width, $left, $top);
+}
+
+.h3 {
+  font-family: Karla;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.pharagraph {
+  color: #212121;
+}
