@@ -17,11 +17,13 @@ module.exports = {
 			{
 				test: /\.[tj]sx?$/,
 				use: ['ts-loader'],
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.(s*)css$/,
 				use: [
 					'style-loader',
+					'css-modules-typescript-loader',
 					{
 						loader: 'css-loader',
 						options: {

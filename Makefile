@@ -6,3 +6,6 @@ prod:
 
 start:
 	yarn run start
+
+lint:
+	npx eslint . --ext js,jsx
