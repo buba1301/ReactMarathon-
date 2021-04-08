@@ -21,7 +21,11 @@ const HomePage = () => {
             You can know the type of Pokemon, its strengths, disadvantages and
             abilities
           </Heading>
-          <Button onClick={() => navigate(LinkEnum.POKEDEX)} size="normal">
+          <Button
+            onClick={() => navigate(LinkEnum.POKEDEX)}
+            size="normal"
+            type="button"
+          >
             See pokemons
           </Button>
         </div>

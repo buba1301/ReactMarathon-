@@ -16,53 +16,36 @@ import useDebounce from "../../hook/useDebounce";
 
 import { IPokemonsApi, IUsePokemon } from "../../interface/pokemons";
 import getPokemonsOnPage from "../../utils/windowWidth";
+import { filtersNames } from "../../utils/filterNames";
 
 const pagination: string[] = ["0", "1", "2", "3", "4"];
 
-const filterNames: string[] = ["Type", "Attack", "Experience"];
-
-interface IQuery {
-  name?: string;
-  limit?: number;
-  offset?: number;
-  types?: string;
-}
-
-interface IFilters {
-  [key: string]: boolean;
+export interface IQuery {
+  [key: string]: string | number;
 }
 
 const Pockedex = () => {
   const pokemonsOnPage = getPokemonsOnPage();
   const pageOffset = pokemonsOnPage;
 
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [currentPage, setCurrentPage] = useState<number>(0);
-  const [query, setQuery] = useState<IQuery>({
+  const initialQueryState = {
     limit: pokemonsOnPage,
     offset: 0,
-    types: "",
-  });
+  };
+
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(0);
+  const [query, setQuery] = useState<IQuery>(initialQueryState);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [pokemon, setPokemon] = useState<IPokemonsApi | null | undefined>(null);
-  const [filters, setFilters] = useState<IFilters>({
-    Fire: false,
-    Normal: false,
-    Electric: false,
-    Water: false,
-  });
+  const [filtersTypesList, setFiltersList] = useState<string[]>([]);
 
   const debounceValue = useDebounce(searchValue, 500);
 
   const { data, isLoading, isError } = useData<IUsePokemon>(
     "getPokemons",
     query,
-    [debounceValue, currentPage, filters, query]
-  );
-
-  console.log(
-    "!!!",
-    data?.pokemons.map((i) => i.types)
+    [debounceValue, currentPage, filtersTypesList]
   );
 
   const handleSeachChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -100,51 +83,10 @@ const Pockedex = () => {
     setPokemon(null);
   };
 
-  const handleChangeFilter = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const filterName = e.target.name;
-
-    const newFilterState = !filters[filterName];
-
-    setFilters((state: IFilters) => ({
-      ...state,
-      [filterName]: newFilterState,
-    }));
-
-    const queryTypesToArray = query.types?.split("|");
-
-    const isCurrentFilterInQuery = (
-      queryTypesToArray: string[] | undefined
-    ) => {
-      return queryTypesToArray?.findIndex(
-        (item) => item === filterName.toLowerCase()
-      );
-    };
-
-    const setFilterInQuery = (typesQuery: string | undefined): void => {
-      setQuery((state: IQuery) => ({
-        ...state,
-        types: typesQuery,
-      }));
-    };
-
-    if (isCurrentFilterInQuery(queryTypesToArray) === -1) {
-      const typesQuery = [filterName.toLowerCase(), ...queryTypesToArray].join(
-        "|"
-      );
-
-      setFilterInQuery(typesQuery);
-    } else {
-      const typesQuery = queryTypesToArray
-        ?.filter((i: string | undefined) => i !== filterName.toLowerCase())
-        .join("|");
-
-      setFilterInQuery(typesQuery);
-    }
-  };
-
-  if (isLoading) {
-    return <Spinner />;
-  }
+  /* const handleResetFilters = () => {
+    setFiltersList([]);
+    setQuery(initialQueryState);
+  }; */
 
   if (isError) {
     return <div>Uppsss...</div>;
@@ -155,8 +97,8 @@ const Pockedex = () => {
       <Layout className={s.containerWrap}>
         <div className={s.containerInput}>
           <Heading className={s.heading}>
-            {!isLoading && data && data.total} Pokemons for you to choose your
-            favorite
+            {!isLoading && data && <p>{data.total}</p>}
+            <p>Pokemons for you to choose your favorite</p>
           </Heading>
           <div className={s.inputWrap}>
             <input
@@ -167,31 +109,39 @@ const Pockedex = () => {
             />
           </div>
         </div>
-        <div className={s.filtersConteiner}>
-          {filterNames.map((name: string) => (
-            <Dropdown
-              key={name}
-              name={name}
-              handleChange={handleChangeFilter}
-              filterState={filters}
-            />
-          ))}
-        </div>
-        <div>
-          <div className={s.cardConteiner}>
-            {!isLoading &&
-              data &&
-              data.pokemons.map((pokemon: IPokemonsApi) => {
-                return (
-                  <Card
-                    key={pokemon.id}
-                    pokemon={pokemon}
-                    handleOpen={handleOpenModal}
-                  />
-                );
-              })}
-          </div>
-        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div className={s.filtersConteiner}>
+              {filtersNames.map((name: string) => (
+                <Dropdown
+                  key={name}
+                  name={name}
+                  query={query}
+                  setQuery={setQuery}
+                  filtersTypesList={filtersTypesList}
+                  setFiltersList={setFiltersList}
+                />
+              ))}
+            </div>
+            <div>
+              <div className={s.cardConteiner}>
+                {!isLoading &&
+                  data &&
+                  data.pokemons.map((pokemon: IPokemonsApi) => {
+                    return (
+                      <Card
+                        key={pokemon.id}
+                        pokemon={pokemon}
+                        handleOpen={handleOpenModal}
+                      />
+                    );
+                  })}
+              </div>
+            </div>
+          </>
+        )}
         <div className={s.loader}>
           {pagination.map((id) => (
             <input

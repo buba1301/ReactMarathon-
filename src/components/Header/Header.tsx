@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ReactComponent as PokemonLogoSvg } from "./assets/Logo.svg";
 
 import HamburgerButton from "../HamburgerButton/Index";
@@ -6,14 +6,12 @@ import HamburgerButton from "../HamburgerButton/Index";
 import s from "./Header.module.scss";
 import SideMenu from "../SideMenu";
 import GeneralMenu from "../GeneralMenu";
+import useMediaWidth from "../../hook/getMedia";
 
 const Header = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isPhoneWidth, setIsPhoneWidth] = useState(false);
 
-  useEffect(() => {
-    setIsPhoneWidth(window.matchMedia("(max-width: 500px)").matches);
-  }, [isPhoneWidth]);
+  const isPhoneWidth = useMediaWidth();
 
   const handleClick = () => {
     setMenuOpen(!isMenuOpen);

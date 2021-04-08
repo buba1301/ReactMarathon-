@@ -1,12 +1,14 @@
-import React from 'react';
-import { A } from 'hookrouter';
+import React from "react";
+import { A } from "hookrouter";
 
-import { GENERAL_MENU } from '../../routes';
+import { GENERAL_MENU } from "../../routes";
 
-import s from './GeneralMenu.module.scss';
+import s from "./GeneralMenu.module.scss";
 
 interface IGeneralMenu {
-  handleClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  handleClick?: (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => void;
 }
 
 const GeneralMenu: React.FC<IGeneralMenu> = ({ handleClick = () => {} }) => {

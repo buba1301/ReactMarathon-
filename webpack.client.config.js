@@ -1,7 +1,10 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const { Server } = require("http");
+
 const NODE_ENV = process.env.NODE_ENV;
+const isDev = NODE_ENV === "development";
+const isProd = !isDev;
 
 module.exports = {
   resolve: {
@@ -83,5 +86,5 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
   },
-  devtool: "source-map",
+  devtool: isDev ? "source-map" : "",
 };

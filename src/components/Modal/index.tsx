@@ -1,14 +1,14 @@
-import React from 'react';
-import { capitalize } from 'lodash';
-import cn from 'classnames';
+import React from "react";
+import { capitalize } from "lodash";
+import cn from "classnames";
 
-import s from './Modal.module.scss';
+import s from "./Modal.module.scss";
 
-import closeIcon from './assets/closeIcon.png';
+import closeIcon from "./assets/closeIcon.png";
 
-import useLockBodyScroll from '../../hook/lockBodyScroll';
-import { IPokemonsApi } from '../../interface/pokemons';
-import toCapitalizeFirstLetter from '../../utils/toCapitalizeFirstLetter';
+import useLockBodyScroll from "../../hook/lockBodyScroll";
+import { IPokemonsApi } from "../../interface/pokemons";
+import toCapitalizeFirstLetter from "../../utils/toCapitalizeFirstLetter";
 
 // TODO: как повернуть градиент в модалке:
 // TODO: поправить расположение имени на модалке
@@ -22,14 +22,18 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
   const { name, stats, types, img, abilities, baseExperience } = pokemon;
   const [generalType] = types;
 
-  const statsList = Object.entries(stats).filter(([params]) => params !== 'hp' && params !== 'speed');
+  const statsList = Object.entries(stats).filter(
+    ([params]) => params !== "hp" && params !== "speed"
+  );
   const statsValues = Object.values(stats);
   const statsSum = statsValues.reduce((acc, value) => {
     return acc + value;
   }, 0);
 
-  const capitalizeAbilities = abilities.map((item) => toCapitalizeFirstLetter(item));
-  const abilitiesToString = capitalizeAbilities.join(' - ');
+  const capitalizeAbilities = abilities.map((item) =>
+    toCapitalizeFirstLetter(item)
+  );
+  const abilitiesToString = capitalizeAbilities.join(" - ");
 
   const getPercentForWidth = (value: number): number => (value / 1000) * 100;
 
@@ -37,7 +41,11 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
 
   return (
     <>
-      <div className={s.closeButton} onClick={handleCloseModal} role="presentation">
+      <div
+        className={s.closeButton}
+        onClick={handleCloseModal}
+        role="presentation"
+      >
         <img src={closeIcon} alt="closeIcon" />
       </div>
       <div className={s.modal}>
@@ -45,7 +53,10 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
           <img className={s.pictureWrap} src={img} alt={name} />
           <div className={s.labelWrap}>
             {types.map((type) => (
-              <span key={type} className={cn(s.label, s[type as keyof typeof s])}>
+              <span
+                key={type}
+                className={cn(s.label, s[type as keyof typeof s])}
+              >
                 {capitalize(type)}
               </span>
             ))}
@@ -54,7 +65,9 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
 
         <div className={cn(s.infoWrap, s[generalType as keyof typeof s])}>
           <div className={s.textWrap}>
-            <div className={s.nameConteiner}>{toCapitalizeFirstLetter(name)}</div>
+            <div className={s.nameConteiner}>
+              {toCapitalizeFirstLetter(name)}
+            </div>
             <div className={s.generationContainer}>Generation 1</div>
             <div className={s.statsSum}>{statsSum}</div>
           </div>
@@ -75,7 +88,9 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
               <div className={s.cardTitle}>Expiriens</div>
               <div className={s.cardValue}>{baseExperience}</div>
               <div className={s.cardLabel}>
-                <span style={{ width: `${getPercentForWidth(baseExperience)}%` }} />
+                <span
+                  style={{ width: `${getPercentForWidth(baseExperience)}%` }}
+                />
               </div>
             </div>
           </div>
@@ -84,13 +99,19 @@ const Modal = ({ showModal, handleCloseModal, pokemon }: IModalProps) => {
             {statsList.map(([params, value]) => (
               <div className={s.card} key={name}>
                 <div className={s.statValueCard}>{value}</div>
-                <div className={s.statText}>{toCapitalizeFirstLetter(params)}</div>
+                <div className={s.statText}>
+                  {toCapitalizeFirstLetter(params)}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-      <div className={s.overlay} onClick={handleCloseModal} role="presentation" />
+      <div
+        className={s.overlay}
+        onClick={handleCloseModal}
+        role="presentation"
+      />
     </>
   );
 };

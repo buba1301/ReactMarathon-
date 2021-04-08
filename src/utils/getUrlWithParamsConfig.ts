@@ -1,15 +1,15 @@
 import { omit } from "lodash";
-
 import config from "../config";
+import { IQuery } from "../pages/Pockedex";
 
 type IAcc = {
   url: string;
-  query: object;
+  query: IQuery;
 };
 
 const getUrlWithParamsConfig = (
   endPointConfig: string,
-  query: object
+  query: IQuery
 ): object => {
   const url = {
     ...config.client.server,
@@ -21,13 +21,17 @@ const getUrlWithParamsConfig = (
     },
   };
 
+  // const typesList = url.query.types;
+  // const queryTypesToString = typesList.join("|");
+
   const pathNameAndQuery = Object.keys(query).reduce(
-    (acc: IAcc, key) => {
+    (acc: IAcc, key: string) => {
       const subStr = `{${key}}`;
-      const queryValueForUrl = query[key as keyof typeof query];
+
+      const queryValueForUrl = query[key];
 
       if (acc.url.indexOf(subStr) !== -1) {
-        const newUrl = acc.url.replace(subStr, queryValueForUrl);
+        const newUrl = acc.url.replace(subStr, queryValueForUrl as string);
         const newQuery = omit(query, key);
         return { ...acc, url: newUrl, query: newQuery };
       }
@@ -42,8 +46,11 @@ const getUrlWithParamsConfig = (
   url.pathname = pathNameAndQuery.url;
   url.query = {
     ...pathNameAndQuery.query,
+    // types: queryTypesToString
   };
-  // console.log(url)
+
+  // url.query.types = queryTypesToString;
+
   return url;
 };
 
