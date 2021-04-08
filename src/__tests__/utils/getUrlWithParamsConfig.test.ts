@@ -5,7 +5,7 @@ describe('getUrlWithParamsConfig', () => {
     const url = getUrlWithParamsConfig('getPokemons', {});
 
     expect(url).toEqual({
-      protocol: 'http',
+      protocol: 'https',
       host: 'zar.hosthot.ru',
       pathname: '/api/v1/pokemons',
       query: {},
@@ -16,7 +16,7 @@ describe('getUrlWithParamsConfig', () => {
     const url = getUrlWithParamsConfig('getPokemons', { name: 'Pikachu' });
 
     expect(url).toEqual({
-      protocol: 'http',
+      protocol: 'https',
       host: 'zar.hosthot.ru',
       pathname: '/api/v1/pokemons',
       query: { name: 'Pikachu' },
@@ -26,7 +26,7 @@ describe('getUrlWithParamsConfig', () => {
   test('Вызов функции c query парметрами, кторые добавляются в pathname и удаляются из query', () => {
     const url = getUrlWithParamsConfig('getPokemon', { id: 25 });
     expect(url).toEqual({
-      protocol: 'http',
+      protocol: 'https',
       host: 'zar.hosthot.ru',
       pathname: '/api/v1/pokemon/25',
       query: {},
