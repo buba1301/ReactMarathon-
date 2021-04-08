@@ -1,0 +1,36 @@
+$third: #f5db13;
+$primary: #f2b807;
+$second: #f28f16;
+$danger: #d93e30;
+$white: #f2f2f2;
+$dark: #212121;
+
+@mixin font($style, $weight, $size, $height, $color) {
+  font-style: $style;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+  color: $color;
+}
+
+$backgroundType: (
+  dark: linear-gradient(270deg, #646363 0.15%, #a1a1a1 100%),
+  grass: linear-gradient(270deg, #7bbb3f 0.15%, #70a83b 100%),
+  fire: linear-gradient(270deg, #943b27 0.15%, #f76545 100%),
+  water: linear-gradient(270deg, #507ca5 0.15%, #76aadb 100%),
+  flying: linear-gradient(270deg, #6795c0 0.15%, #76aadb 100%),
+  poison: linear-gradient(270deg, #b28cbe 0.15%, #a974bc 100%),
+  ground: linear-gradient(270deg, #807165 0.15%, #9b897b 100%),
+  electric: linear-gradient(270deg, #caa138 0.15%, #f7c545 100%),
+);
+
+$backgroundTypeForModalStats: (
+  dark: linear-gradient(180deg, #646363 42%, #a1a1a1 100%),
+  grass: linear-gradient(180deg, #7bbb3f 42%, #70a83b 100%),
+  fire: linear-gradient(180deg, #943b27 42%, #f76545 100%),
+  water: linear-gradient(180deg, #507ca5 42%, #76aadb 100%),
+  flying: linear-gradient(180deg, #6795c0 42%, #76aadb 100%),
+  poison: linear-gradient(180deg, #b28cbe 42%, #a974bc 100%),
+  ground: linear-gradient(180deg, #807165 42%, #9b897b 100%),
+  electric: linear-gradient(180deg, #caa138 42%, #f7c545 100%),
+);

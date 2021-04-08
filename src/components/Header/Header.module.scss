@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import '../../variables';
+
+.root {
+  width: 100%;
+  flex: 0 0 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $third;
+  box-shadow: 0px 6px 10px rgba(1, 28, 64, 0.2);
+}
+
+.logo svg {
+  max-width: 169px;
+  min-height: 63px;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 658px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .root {
+    justify-content: space-between;
+  }
+
+  .nav {
+    width: 555px;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav {
+    justify-content: flex-end;
+    padding-right: 20px;
+  }
+}

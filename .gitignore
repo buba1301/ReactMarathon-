@@ -1,1 +1,13 @@
+<<<<<<< HEAD
 node_modules
+=======
+node modules/
+node_modules
+dist
+yarn.lock
+
+*.module.d.ts
+*.module.scss.d.ts
+/src/**/**/*.module.d.ts
+/src/**/**/*.module.scss.d.ts
+>>>>>>> 7ee335534206c7a7b2fefc09ae02feae0c8e27a1

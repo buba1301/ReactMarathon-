@@ -1,0 +1,70 @@
+@import '../../variables';
+
+.root {
+  border: none;
+  box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
+  border-radius: 11px;
+  padding: 0 33px 9px;
+  cursor: pointer;
+  outline: 0;
+
+  &:active {
+    box-shadow: inset 0px -6px 0px rgba(0, 0, 0, 0.18);
+    padding-bottom: 6px;
+  }
+}
+
+.small {
+  height: 21px;
+  width: 66px;
+  border-radius: 10px;
+  box-shadow: none;
+  padding: 0 15px 0;
+  @include font(normal, 400, 13px, 15px, $dark);
+
+  :hover,
+  :focus {
+    background-color: #2980b9;
+  }
+}
+
+.middle {
+  height: 21px;
+  width: 135px;
+  border-radius: 10px;
+  box-shadow: none;
+  padding: 0 15px 0;
+  @include font(normal, 400, 13px, 15px, $dark);
+
+  :hover,
+  :focus {
+    background-color: #2980b9;
+  }
+}
+
+.normal {
+  height: 66px;
+  width: 231px;
+  @include font(normal, bold, 23px, 16px, $dark);
+}
+
+.yellow {
+  background: $third;
+  padding: 0 80px 9px;
+}
+
+.green {
+  background: #73d677;
+}
+
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+  .middle {
+    width: 100px;
+  }
+}
+
+@media (max-width: 500px) {
+}
