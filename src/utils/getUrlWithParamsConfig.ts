@@ -16,9 +16,6 @@ const getUrlWithParamsConfig = (endPointConfig: string, query: IQuery): object =
     },
   };
 
-  // const typesList = url.query.types;
-  // const queryTypesToString = typesList.join("|");
-
   const pathNameAndQuery = Object.keys(query).reduce(
     (acc: IAcc, key: string) => {
       const subStr = `{${key}}`;
@@ -41,10 +38,7 @@ const getUrlWithParamsConfig = (endPointConfig: string, query: IQuery): object =
   url.pathname = pathNameAndQuery.url;
   url.query = {
     ...pathNameAndQuery.query,
-    // types: queryTypesToString
   };
-
-  // url.query.types = queryTypesToString;
 
   return url;
 };
