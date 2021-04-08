@@ -1,2 +1,2 @@
 # ReactMarathon 
- This is tutuorial app for React Pro Marathon
+ https://modest-shannon-a0dd21.netlify.app/
